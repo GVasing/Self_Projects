@@ -1,1 +1,3 @@
 # Country Guessing Game GUI
+
+This project will be a GUI for a previous CLI game I built.  While the CLI runs well, it lacks the display a user can intuitevly understand, as well as subjectively not be as appealing as a GUI design would be.  Therefore I will be building this essentially as an addition to the game that user's can interact with or not.  Hopefully it turns out well.  I wil update this further along the way.  Thanks for reading :)
