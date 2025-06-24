@@ -1,5 +1,6 @@
-# Import module
+# Import modules
 import tkinter as tk
+from PIL import ImageTk, Image
 
 # Create variable for reference convenience
 root = tk.Tk()
@@ -28,10 +29,16 @@ def myClick():
     #     myLabel.destroy()
     myLabel.grid(row=3, column=0)
 
-
 # Button inserted/displayed 
 myButton = tk.Button(root, text="Press To Start", padx=50, pady=10, command=myClick)
 myButton.grid(row=2, column=0)
+
+# Background image created/defined
+my_img = ImageTk.PhotoImage(Image.open("CartoonWorldMap.jpg"))
+my_label = tk.Label(image=my_img)
+
+# Background image displayed
+my_label.grid(row=5, column=0)
 
 # Run code/Open window
 root.mainloop()
