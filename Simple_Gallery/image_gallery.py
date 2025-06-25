@@ -16,6 +16,9 @@ my_img3 = ImageTk.PhotoImage(Image.open("contentwojak.jpg"))
 # Create/Define list for images
 image_list = [my_img1, my_img2, my_img3]
 
+# Create/Define status bar
+status = Label(root, text="Image 1 of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=E)
+
 # Create/Define container for image
 my_label = Label(image=my_img1)
 
@@ -43,6 +46,12 @@ def forward(image_num):
     my_label.grid(row=0, column=0, columnspan=3)
     back_button.grid(row=1, column=0)
     forward_button.grid(row=1, column=2)
+    
+    # Status Bar
+    status = Label(root, text="Image " + str(image_num + 1) + " of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=E)
+
+    # Display status bar
+    status.grid(row=2, column=0, columnspan=3, sticky=W+E)
 
 # Create function for back button
 def backward(image_num):
@@ -66,6 +75,12 @@ def backward(image_num):
     back_button.grid(row=1, column=0)
     forward_button.grid(row=1, column=2)
 
+    # Status Bar
+    status = Label(root, text="Image " + str(image_num + 1) + " of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=E)
+
+    # Display status bar
+    status.grid(row=2, column=0, columnspan=3, sticky=W+E)
+
 # Create/Define directional buttons
 back_button = Button(root, text='<<', command=lambda: backward(1), state=DISABLED)
 exit_button = Button(root, text='Exit Program', command=root.quit)
@@ -74,7 +89,10 @@ forward_button = Button(root, text='>>', command=lambda: forward(1))
 # Display directional buttons
 back_button.grid(row=1, column=0)
 exit_button.grid(row=1, column=1)
-forward_button.grid(row=1, column=2)
+forward_button.grid(row=1, column=2, pady=10)
+
+# Display status bar
+status.grid(row=2, column=0, columnspan=3, sticky=W+E)
 
 # Run code/Open window
 root.mainloop()
