@@ -1,6 +1,26 @@
 # Import modules
 import tkinter as tk
 from PIL import ImageTk, Image
+import sqlite3
+
+# Define database for user accounts/info
+conn = sqlite3.connect("player_data.db")
+
+# Create/Define cursor
+c = conn.cursor()
+
+# Create table for data in database
+c.execute(""" CREATE TABLE players (
+          user_id serial PRIMARY KEY,
+          user_name text NOT NULL
+          )
+""")
+
+# Commit changes
+conn.commit()
+
+# Close connection
+conn.close()
 
 # Create variable for reference convenience
 root = tk.Tk()
@@ -9,16 +29,14 @@ root = tk.Tk()
 root.title("Country Guessing Game")
 
 # Creating a label widget
-myLabel1 = tk.Label(root, text="Country Guessing Game")
-myLabel2 = tk.Label(root, text="Welcome To The Country Guessing Game!")
+myLabel1 = tk.Label(root, text="Welcome To The Country Guessing Game!")
 
 # Shoving it onto the screen
-myLabel1.grid(row=0, column=0)
-myLabel2.grid(row=1, column=0)
+myLabel1.grid(row=0, column=0, pady=5)
 
 # Output text box
 e = tk.Entry(root, width=50)
-e.grid(row=4, column=0)
+e.grid(row=4, column=0, padx=5, pady=5)
 e.insert(0, "Enter Your Name...")
 
 # Function for Button created/defined
@@ -39,6 +57,7 @@ my_label = tk.Label(image=my_img)
 
 # Background image displayed
 my_label.grid(row=5, column=0)
+
 
 # Run code/Open window
 root.mainloop()
