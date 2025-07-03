@@ -19,11 +19,10 @@ conn = sqlite3.connect("player_data.db")
 c = conn.cursor()
 
 # Create table for data in database
-c.execute(""" CREATE TABLE players (
-          user_id INTEGER PRIMARY KEY,
-          user_name TEXT NOT NULL
-          )
-""")
+# c.execute(""" CREATE TABLE players (
+#           user_name TEXT NOT NULL
+#           )
+# """)
 
 # Commit changes
 conn.commit()
@@ -38,26 +37,26 @@ def myClick():
     myLabel = Label(root, text=hello)
     myLabel.grid(row=3, column=0)
 
-    # # Connect to database
-    # conn = sqlite3.connect("player_data.db")
+    # Connect to database
+    conn = sqlite3.connect("player_data.db")
 
-    # # Create/Define cursor
-    # c = conn.cursor()
+    # Create/Define cursor
+    c = conn.cursor()
 
-    # # Insert data into table
-    # c.execute("INSERT INTO players VALUES (:user_name)",
-    #           {
-    #               "user_name" : player_name.get()
-    #           })
+    # Insert data into table
+    c.execute("INSERT INTO players VALUES (:user_name)",
+              {
+                  "user_name" : player_name.get()
+              })
 
-    # # Commit changes
-    # conn.commit()
+    # Commit changes
+    conn.commit()
 
-    #  # Close connection
-    # conn.close()
+     # Close connection
+    conn.close()
 
-    # # Clear textbox
-    # player_name.delete(0, END)
+    # Clear textbox
+    player_name.delete(0, END)
 
 # Positioning onto the screen
 myLabel1.grid(row=0, column=0, pady=5)
