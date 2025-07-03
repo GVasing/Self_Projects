@@ -62,9 +62,10 @@ def myClick():
 myLabel1.grid(row=0, column=0, pady=5)
 
 # Output text box for player name
-player_name = Entry(root, width=50)
+player_name = Entry(root, width=50, fg="grey")
 player_name.grid(row=4, column=0, padx=5, pady=5)
 player_name.insert(0, "Enter Your Name...")
+player_name.config(fg="black")
 
 # Button inserted/displayed 
 myButton = Button(root, text="Press To Start", padx=50, pady=10, command=myClick)
