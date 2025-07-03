@@ -96,19 +96,20 @@ def myClick():
     # Run opening message function
     game_message()
 
-# Option list options
-options = ["Settings/Difficulty", "Exit"]
+# Close Window function
+def close_window():
+    root.destroy()
 
-# Define variable (Tkinter type variable)
-clicked = StringVar(root)
-
-# Set default value for variable
-clicked.set("Options")
-
-# Create/Define and display dropdown menu
-dropdown = OptionMenu(root, clicked, *options)
-dropdown.config(indicatoron=0)
+# Create/Define MenuButton
+dropdown = Menubutton(root, text="Options", relief=RAISED)
 dropdown.place(x=0, y=0)
+
+# Create menu and associate to MenuButton
+dropdown.menu = Menu(dropdown, tearoff=0)
+dropdown["menu"] = dropdown.menu
+
+# Add commands to menu
+dropdown.menu.add_command(label="Exit", command=close_window)
 
 # Output text box for player name
 player_name = Entry(root, width=50, fg="grey")
