@@ -58,6 +58,12 @@ OR, if you're 'FEELING LUCKY', try and guess the Country in one, with no hint(s)
 
 # Function for Player start button created/defined
 def myClick():
+    # Disable button once pressed
+    if player_name.get():
+        myButton["state"] = DISABLED
+    else:
+        myButton["state"] = ACTIVE
+
     # Print 'hello' with player name
     hello = "Let's Begin "+ player_name.get() + "!"
     myLabel = Label(root, text=hello)
