@@ -48,7 +48,6 @@ If you're a beginner, start with EASY mode, where the hints are plenty, and the 
 If you're a bit more confident, play INTERMEDIATE.  Here you'll be given plenty of hints, but the guesses are limited to 10, so choose wisely.
 If you think you're a pro, play HARD. It'll be the same format, but hints will limited and obscure, while guesses will be capped at 5.
 OR, if you're 'FEELING LUCKY', try and guess the Country in one, with no hint(s).
-Press Enter when you're ready(Or 'Quit' if you're not ready). Best of luck!.
 """ 
     # Create/Define label for message
     opening_message_label = Label(root, text=opening_message)
