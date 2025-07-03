@@ -3,25 +3,6 @@ from tkinter import *
 from PIL import ImageTk, Image
 import sqlite3
 
-# Define database for user accounts/info
-conn = sqlite3.connect("player_data.db")
-
-# Create/Define cursor
-c = conn.cursor()
-
-# Create table for data in database
-# c.execute(""" CREATE TABLE players (
-#           user_id serial PRIMARY KEY,
-#           user_name text NOT NULL
-#           )
-# """)
-
-# Commit changes
-conn.commit()
-
-# Close connection
-conn.close()
-
 # Create variable for reference convenience
 root = Tk()
 
@@ -31,13 +12,24 @@ root.title("Country Guessing Game")
 # Creating a label widget
 myLabel1 = Label(root, text="Welcome To The Country Guessing Game!")
 
-# Shoving it onto the screen
-myLabel1.grid(row=0, column=0, pady=5)
+# Define database for user accounts/info
+conn = sqlite3.connect("player_data.db")
 
-# Output text box for player name
-player_name = Entry(root, width=50)
-player_name.grid(row=4, column=0, padx=5, pady=5)
-player_name.insert(0, "Enter Your Name...")
+# Create/Define cursor
+c = conn.cursor()
+
+# Create table for data in database
+c.execute(""" CREATE TABLE players (
+          user_id INTEGER PRIMARY KEY,
+          user_name TEXT NOT NULL
+          )
+""")
+
+# Commit changes
+conn.commit()
+
+# Close connection
+conn.close()
 
 # Function for Button created/defined
 def myClick():
@@ -67,6 +59,14 @@ def myClick():
     # # Clear textbox
     # player_name.delete(0, END)
 
+# Positioning onto the screen
+myLabel1.grid(row=0, column=0, pady=5)
+
+# Output text box for player name
+player_name = Entry(root, width=50)
+player_name.grid(row=4, column=0, padx=5, pady=5)
+player_name.insert(0, "Enter Your Name...")
+
 # Button inserted/displayed 
 myButton = Button(root, text="Press To Start", padx=50, pady=10, command=myClick)
 myButton.grid(row=2, column=0)
@@ -77,7 +77,6 @@ my_label = Label(image=my_img)
 
 # Background image displayed
 my_label.grid(row=5, column=0)
-
 
 # Run code/Open window
 root.mainloop()
