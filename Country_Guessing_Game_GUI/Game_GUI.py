@@ -10,11 +10,11 @@ conn = sqlite3.connect("player_data.db")
 c = conn.cursor()
 
 # Create table for data in database
-c.execute(""" CREATE TABLE players (
-          user_id serial PRIMARY KEY,
-          user_name text NOT NULL
-          )
-""")
+# c.execute(""" CREATE TABLE players (
+#           user_id serial PRIMARY KEY,
+#           user_name text NOT NULL
+#           )
+# """)
 
 # Commit changes
 conn.commit()
