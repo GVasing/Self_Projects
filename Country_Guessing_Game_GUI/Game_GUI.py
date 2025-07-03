@@ -10,7 +10,10 @@ root = Tk()
 root.title("Country Guessing Game")
 
 # Creating a label widget
-myLabel1 = Label(root, text="Welcome To The Country Guessing Game!")
+welcome_title = Label(root, text="Welcome To The Country Guessing Game!")
+
+# Positioning welcome onto the screen
+welcome_title.grid(row=0, column=0, pady=5)
 
 # Define database for user accounts/info
 conn = sqlite3.connect("player_data.db")
@@ -93,8 +96,19 @@ def myClick():
     # Run opening message function
     game_message()
 
-# Positioning onto the screen
-myLabel1.grid(row=0, column=0, pady=5)
+# Option list options
+options = ["Settings/Difficulty", "Exit"]
+
+# Define variable (Tkinter type variable)
+clicked = StringVar(root)
+
+# Set default value for variable
+clicked.set("Options")
+
+# Create/Define and display dropdown menu
+dropdown = OptionMenu(root, clicked, *options)
+dropdown.config(indicatoron=0)
+dropdown.place(x=0, y=0)
 
 # Output text box for player name
 player_name = Entry(root, width=50, fg="grey")
@@ -106,11 +120,11 @@ myButton = Button(root, text="Press To Start", padx=50, pady=10, command=myClick
 myButton.grid(row=2, column=0)
 
 # Background image created/defined
-my_img = ImageTk.PhotoImage(Image.open("CartoonWorldMap.jpg"))
-my_label = Label(image=my_img)
+map = ImageTk.PhotoImage(Image.open("CartoonWorldMap.jpg"))
+map_label = Label(image=map)
 
 # Background image displayed
-my_label.grid(row=5, column=0)
+map_label.grid(row=5, column=0)
 
 # Bind text colour change function
 player_name.bind("<KeyRelease>", text_colour_change)
