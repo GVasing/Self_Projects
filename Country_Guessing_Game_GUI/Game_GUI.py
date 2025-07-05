@@ -97,6 +97,14 @@ def myClick():
     # Run opening message function
     game_message()
 
+# New window for scores option function
+def open_scores():
+    scores_window = Toplevel()
+    scores_window.title("Scores")
+    scores_window.geometry("400x400")
+    scores_label = Label(scores_window, text="Player Scores:").pack()
+    back_button = Button(scores_window, text="Back to Main", command=scores_window.destroy).pack()
+
 # Pop-up for close window confirmation
 def exit_pop_up():
     response = messagebox.askquestion("", "Are you sure you want to exit?")
@@ -121,7 +129,7 @@ dropdown["menu"] = dropdown.menu
 # Add commands to menu
 dropdown.menu.add_command(label="Exit", command=exit_pop_up)
 dropdown.menu.add_command(label="Settings/Difficulty") # Add command once function is created.
-dropdown.menu.add_command(label="Scores") # Add command once function is created.
+dropdown.menu.add_command(label="Scores", command=open_scores)
 
 # Output text box for player name
 player_name = Entry(root, width=50, fg="grey")

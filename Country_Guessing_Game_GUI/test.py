@@ -80,11 +80,18 @@ root.geometry("400x400")
 # drop.config(indicatoron=0)
 # drop.pack()
 
-# # Create/Define menu bar
-# menubar = Menu()
+# Create/Define menu bar
+menubar = Menu()
   
 def close_window():
     root.destroy()
+
+def open_scores():
+    scores_window = Toplevel()
+    scores_window.title("Scores")
+    scores_window.geometry("400x400")
+    scores_label = Label(scores_window, text="Player Scores:").pack()
+    back_button = Button(scores_window, text="Back to Main", command=scores_window.destroy).pack()
 
 mb = Menubutton(root, text="Options", relief=RAISED)
 mb.pack()
@@ -93,54 +100,6 @@ mb.menu = Menu(mb, tearoff=0)
 mb["menu"] = mb.menu
 
 mb.menu.add_command(label="Exit", command=close_window)
+mb.menu.add_command(label="Scores", command=open_scores)
 
 root.mainloop()
-
-# import tkinter as tk
-# from tkinter import ttk, messagebox
-
-
-# def show_about_info():
-#     messagebox.showinfo(
-#         title="About",
-#         message="Tkinter is GUI for Python programing language."
-#     )
-
-
-# def quit_app():
-#     root.destroy()
-
-
-# def example():
-#     print("Example")
-
-
-# root = tk.Tk()
-# root.title("Menu dropdown example")
-# root.option_add("*tearOff", False)
-
-# main = ttk.Frame(root)
-# main.pack(fill="both", expand=True, padx=1, pady=(4, 0))
-
-# menubar = tk.Menu()
-# root.config(menu=menubar)
-
-# file_menu = tk.Menu(menubar)
-# help_menu = tk.Menu(menubar)
-
-# menubar.add_cascade(menu=file_menu, label="File")
-# menubar.add_cascade(menu=help_menu, label="Help")
-
-# file_menu.add_command(label="New", command=example)
-# file_menu.add_command(label="Save File", command=example)
-# file_menu.add_command(label="Open File", command=example)
-# file_menu.add_command(label="Close Tab", command=example)
-# file_menu.add_command(label="Exit", command=quit_app)
-
-# help_menu.add_command(label="About", command=show_about_info)
-
-# notebook = ttk.Notebook(main)
-# notebook.pack(fill="both", expand=True)
-
-
-# root.mainloop()
