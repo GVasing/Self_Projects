@@ -105,14 +105,9 @@ def open_scores():
     scores_label = Label(scores_window, text="Player Scores:").pack()
     back_button = Button(scores_window, text="Back to Main", command=scores_window.destroy).pack()
 
-# Confirm button function
-def confirm_difficulty():
-    # message = "You have selected: " + # add difficulty.get() once defined.
-    # difficulty_label = Label(settings_window, text=message).pack()
-    pass
-
 # New window for settings/difficulty option function
 def open_settings():
+    global frame
     settings_window = Toplevel()
     settings_window.title("Settings")
     settings_window.geometry("400x400")
@@ -120,7 +115,7 @@ def open_settings():
     frame.pack(padx=50, pady=50)
     settings_label = Label(frame, text="Choose a difficulty:")
     settings_label.grid(row=0, column=0)
-    save_button = Button(frame, text="Confirm") # Add command=settings_window.confirm_difficulty once function is complete.
+    save_button = Button(frame, text="Confirm", command= lambda: confirm_difficulty(mode.get()))
     save_button.grid(row=5, column=0)
     back_button = Button(settings_window, text="Back to Main", command=settings_window.destroy).pack()
     
@@ -128,10 +123,10 @@ def open_settings():
     mode = StringVar()
 
     # Create/Define RadioButtons for difficulty
-    easy_button = Radiobutton(frame, text="Easy", variable=mode, value=1)
-    intermediate_button = Radiobutton(frame, text="Intermediate", variable=mode, value=2)
-    hard_button = Radiobutton(frame, text="Hard", variable=mode, value=3)
-    im_feeling_lucky_button = Radiobutton(frame, text="I'm Feeling Lucky", variable=mode, value=4)
+    easy_button = Radiobutton(frame, text="Easy", variable=mode, value="Easy")
+    intermediate_button = Radiobutton(frame, text="Intermediate", variable=mode, value="Intermediate")
+    hard_button = Radiobutton(frame, text="Hard", variable=mode, value="Hard")
+    im_feeling_lucky_button = Radiobutton(frame, text="I'm Feeling Lucky", variable=mode, value="I'm Feeling Lucky")
 
     # Display and postion RadioButtons
     easy_button.grid(row=1, column=0, sticky="w")
@@ -139,6 +134,10 @@ def open_settings():
     hard_button.grid(row=3, column=0, sticky="w")
     im_feeling_lucky_button.grid(row=4, column=0, sticky="w")
 
+# Confirm button function
+def confirm_difficulty(value):
+    difficulty_label = Label(frame, text="You have selected: " + value)
+    difficulty_label.grid(row=6, column=0)
 
 # Pop-up for close window confirmation
 def exit_pop_up():

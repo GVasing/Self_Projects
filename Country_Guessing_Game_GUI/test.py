@@ -95,6 +95,7 @@ def open_scores():
     back_button = Button(scores_window, text="Back to Main", command=scores_window.destroy).pack()
 
 def open_settings():
+    global frame
     settings_window = Toplevel()
     settings_window.title("Settings")
     settings_window.geometry("400x400")
@@ -103,7 +104,7 @@ def open_settings():
     settings_label = Label(frame, text="Choose a difficulty:")
     settings_label.grid(row=0, column=0)
     # settings_label.pack()
-    save_button = Button(frame, text="Confirm") # Add command=settings_window.confirm_difficulty once function is complete.
+    save_button = Button(frame, text="Confirm", command=lambda: confirm_difficulty(mode.get())) # Add command=settings_window.confirm_difficulty once function is complete.
     save_button.grid(row=5, column=0)
     # save_button.pack()
     back_button = Button(settings_window, text="Back to Main", command=settings_window.destroy).pack()
@@ -121,10 +122,10 @@ def open_settings():
     # for text, level in DIFFICULTY:
     #     Radiobutton(frame, text=text, variable=mode, value=level).pack(anchor=W)
 
-    easy_button = Radiobutton(frame, text="Easy", variable=mode, value=1)
-    intermediate_button = Radiobutton(frame, text="Intermediate", variable=mode, value=2)
-    hard_button = Radiobutton(frame, text="Hard", variable=mode, value=3)
-    im_feeling_lucky_button = Radiobutton(frame, text="I'm Feeling Lucky", variable=mode, value=4)
+    easy_button = Radiobutton(frame, text="Easy", variable=mode, value="Easy")
+    intermediate_button = Radiobutton(frame, text="Intermediate", variable=mode, value="Intermediate")
+    hard_button = Radiobutton(frame, text="Hard", variable=mode, value="Hard")
+    im_feeling_lucky_button = Radiobutton(frame, text="I'm Feeling Lucky", variable=mode, value="I'm Feeling Lucky")
 
     easy_button.grid(row=1, column=0, sticky="w")
     intermediate_button.grid(row=2, column=0, sticky="w")
@@ -132,6 +133,9 @@ def open_settings():
     im_feeling_lucky_button.grid(row=4, column=0, sticky="w")
 
 
+def confirm_difficulty(value):
+    difficulty_label = Label(frame, text="You have selected: " + value)
+    difficulty_label.grid(row=6, column=0)
 
 mb = Menubutton(root, text="Options", relief=RAISED)
 mb.pack()
