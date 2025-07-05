@@ -105,6 +105,22 @@ def open_scores():
     scores_label = Label(scores_window, text="Player Scores:").pack()
     back_button = Button(scores_window, text="Back to Main", command=scores_window.destroy).pack()
 
+# Confirm button function
+def confirm_difficulty():
+    # message = "You have selected: " + # add difficulty.get() once defined.
+    # difficulty_label = Label(settings_window, text=message).pack()
+    pass
+
+# New window for settings/difficulty option function
+def open_settings():
+    settings_window = Toplevel()
+    settings_window.title("Settings")
+    settings_window.geometry("400x400")
+    settings_label = Label(settings_window, text="Choose a difficulty:").pack()
+    save_button = Button(settings_window, text="Confirm").pack() # Add command=settings_window.confirm_difficulty once function is complete.
+    back_button = Button(settings_window, text="Back to Main", command=settings_window.destroy).pack()
+
+
 # Pop-up for close window confirmation
 def exit_pop_up():
     response = messagebox.askquestion("", "Are you sure you want to exit?")
@@ -128,7 +144,7 @@ dropdown["menu"] = dropdown.menu
 
 # Add commands to menu
 dropdown.menu.add_command(label="Exit", command=exit_pop_up)
-dropdown.menu.add_command(label="Settings/Difficulty") # Add command once function is created.
+dropdown.menu.add_command(label="Settings/Difficulty", command=open_settings)
 dropdown.menu.add_command(label="Scores", command=open_scores)
 
 # Output text box for player name
