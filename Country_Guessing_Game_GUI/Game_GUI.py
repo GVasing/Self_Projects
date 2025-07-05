@@ -1,5 +1,6 @@
 # Import modules
 from tkinter import *
+from tkinter import messagebox
 from PIL import ImageTk, Image
 import sqlite3
 
@@ -96,6 +97,15 @@ def myClick():
     # Run opening message function
     game_message()
 
+# Pop-up for close window confirmation
+def exit_pop_up():
+    response = messagebox.askquestion("", "Are you sure you want to exit?")
+
+    if response == "yes":
+        close_window()
+    else:
+        pass
+
 # Close Window function
 def close_window():
     root.destroy()
@@ -109,7 +119,7 @@ dropdown.menu = Menu(dropdown, tearoff=0)
 dropdown["menu"] = dropdown.menu
 
 # Add commands to menu
-dropdown.menu.add_command(label="Exit", command=close_window)
+dropdown.menu.add_command(label="Exit", command=exit_pop_up)
 dropdown.menu.add_command(label="Settings/Difficulty") # Add command once function is created.
 dropdown.menu.add_command(label="Scores") # Add command once function is created.
 
