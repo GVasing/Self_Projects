@@ -116,9 +116,28 @@ def open_settings():
     settings_window = Toplevel()
     settings_window.title("Settings")
     settings_window.geometry("400x400")
-    settings_label = Label(settings_window, text="Choose a difficulty:").pack()
-    save_button = Button(settings_window, text="Confirm").pack() # Add command=settings_window.confirm_difficulty once function is complete.
+    frame = LabelFrame(settings_window, padx=50, pady=50)
+    frame.pack(padx=50, pady=50)
+    settings_label = Label(frame, text="Choose a difficulty:")
+    settings_label.grid(row=0, column=0)
+    save_button = Button(frame, text="Confirm") # Add command=settings_window.confirm_difficulty once function is complete.
+    save_button.grid(row=5, column=0)
     back_button = Button(settings_window, text="Back to Main", command=settings_window.destroy).pack()
+    
+    # Create tkinter style variable
+    mode = StringVar()
+
+    # Create/Define RadioButtons for difficulty
+    easy_button = Radiobutton(frame, text="Easy", variable=mode, value=1)
+    intermediate_button = Radiobutton(frame, text="Intermediate", variable=mode, value=2)
+    hard_button = Radiobutton(frame, text="Hard", variable=mode, value=3)
+    im_feeling_lucky_button = Radiobutton(frame, text="I'm Feeling Lucky", variable=mode, value=4)
+
+    # Display and postion RadioButtons
+    easy_button.grid(row=1, column=0, sticky="w")
+    intermediate_button.grid(row=2, column=0, sticky="w")
+    hard_button.grid(row=3, column=0, sticky="w")
+    im_feeling_lucky_button.grid(row=4, column=0, sticky="w")
 
 
 # Pop-up for close window confirmation

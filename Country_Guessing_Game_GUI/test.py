@@ -82,6 +82,7 @@ root.geometry("400x400")
 
 # Create/Define menu bar
 menubar = Menu()
+
   
 def close_window():
     root.destroy()
@@ -93,6 +94,45 @@ def open_scores():
     scores_label = Label(scores_window, text="Player Scores:").pack()
     back_button = Button(scores_window, text="Back to Main", command=scores_window.destroy).pack()
 
+def open_settings():
+    settings_window = Toplevel()
+    settings_window.title("Settings")
+    settings_window.geometry("400x400")
+    frame = LabelFrame(settings_window, padx=50, pady=50)
+    frame.pack(padx=50, pady=50)
+    settings_label = Label(frame, text="Choose a difficulty:")
+    settings_label.grid(row=0, column=0)
+    # settings_label.pack()
+    save_button = Button(frame, text="Confirm") # Add command=settings_window.confirm_difficulty once function is complete.
+    save_button.grid(row=5, column=0)
+    # save_button.pack()
+    back_button = Button(settings_window, text="Back to Main", command=settings_window.destroy).pack()
+
+    # DIFFICULTY = [
+    # ("Easy", "Easy"),
+    # ("Intermediate", "Intermediate"),
+    # ("Hard", "Hard"),
+    # ("I'm Feeling Lucky", "I'm Feeling Lucky")
+    # ]
+
+    mode = StringVar()
+    # mode.set("Choose a difficulty")
+
+    # for text, level in DIFFICULTY:
+    #     Radiobutton(frame, text=text, variable=mode, value=level).pack(anchor=W)
+
+    easy_button = Radiobutton(frame, text="Easy", variable=mode, value=1)
+    intermediate_button = Radiobutton(frame, text="Intermediate", variable=mode, value=2)
+    hard_button = Radiobutton(frame, text="Hard", variable=mode, value=3)
+    im_feeling_lucky_button = Radiobutton(frame, text="I'm Feeling Lucky", variable=mode, value=4)
+
+    easy_button.grid(row=1, column=0, sticky="w")
+    intermediate_button.grid(row=2, column=0, sticky="w")
+    hard_button.grid(row=3, column=0, sticky="w")
+    im_feeling_lucky_button.grid(row=4, column=0, sticky="w")
+
+
+
 mb = Menubutton(root, text="Options", relief=RAISED)
 mb.pack()
 
@@ -101,5 +141,8 @@ mb["menu"] = mb.menu
 
 mb.menu.add_command(label="Exit", command=close_window)
 mb.menu.add_command(label="Scores", command=open_scores)
+mb.menu.add_command(label="Settings/Difficulty", command=open_settings)
+
+
 
 root.mainloop()
