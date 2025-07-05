@@ -110,6 +110,7 @@ dropdown["menu"] = dropdown.menu
 
 # Add commands to menu
 dropdown.menu.add_command(label="Exit", command=close_window)
+dropdown.menu.add_command(label="Settings/Difficulty") # Add command once function is created.
 
 # Output text box for player name
 player_name = Entry(root, width=50, fg="grey")
