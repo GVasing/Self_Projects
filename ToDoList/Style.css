@@ -216,3 +216,17 @@ input {
     position: absolute;
     bottom: 50%;
 } */
+
+*::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 3px none #000000;
+  }
