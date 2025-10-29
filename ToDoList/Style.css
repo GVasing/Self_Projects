@@ -106,7 +106,7 @@ a:hover {
     height: 95%;
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 0;
 
     overflow-y: auto;
 }
