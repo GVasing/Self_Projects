@@ -10,15 +10,17 @@
     <section id="home">
         <h1 class="mainheading">To Do List</h1>
         <nav class="main_navbar">
-            <a href="#todo" class="subheading">To Do</a>
-            <a href="#inprogress" class="subheading">In Progress</a>
-            <a href="#completed" class="subheading">Completed</a>
+            <a href="#todo" class="subheading" id="toDoBtn">To Do</a>
+            <a href="#inprogress" class="subheading" id="inProgressBtn">In Progress</a>
+            <a href="#completed" class="subheading" id="completedBtn">Completed</a>
         </nav>
-    </section>
-    <section id="todo">
-        <h1 class="mainheading">To Do</h1>
         <!-- <div class="gridline-x"></div>
         <div class="gridline-y"></div> -->
+        <p id="homerightarrow">►</p>
+    </section>
+    <section id="todo">
+        <p class="leftarrow" id="toDoLeftArrow">◄</p>
+        <h1 class="mainheading">To Do</h1>
         <div class="parent_container"> 
             <div class="list_container">
                 <label class="container">Lorem Ipsum
@@ -59,6 +61,7 @@
                 </label>
             </div>
         </div>
+        <p class="rightarrow" id="toDoRightArrow">►</p>
         <nav class="navbar">
             <a href="#home" class="subheading">Home</a>
             <a href="#inprogress" class="subheading">In Progress</a>
@@ -66,6 +69,7 @@
         </nav>
     </section>
     <section id="inprogress">
+        <p class="leftarrow" id="inProgressLeftArrow">◄</p>
         <h1 class="mainheading">In Progress</h1>
         <div class="parent_container">
             <div class="list_container">
@@ -107,6 +111,7 @@
                 </label>
             </div>
         </div>
+        <p class="rightarrow" id="inProgressRightArrow">►</p>
         <nav class="navbar">
             <a href="#home" class="subheading">Home</a>
             <a href="#todo" class="subheading">To Do</a>
@@ -114,6 +119,7 @@
         </nav>
     </section>
     <section id="completed">
+        <p class="leftarrow" id="completeLeftArrow">◄</p>
         <h1 class="mainheading">Completed</h1>
         <div class="parent_container">
             <div class="list_container">
@@ -161,5 +167,6 @@
             <a href="#inprogress" class="subheading">In Progress</a>
         </nav>
     </section>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     overflow-x: auto;
     overflow-y: hidden;
@@ -41,6 +45,45 @@ nav {
     /* border-style: solid;
     border-width: 2px;
     border-color: black; */
+}
+
+.leftarrow {
+    width: fit-content;
+    height: auto;
+    /* border-style: solid;
+    border-width: 2px;
+    border-color: black; */
+    position: relative;
+    top: 38.5%;
+    left: 8%;
+    font-size: 40px;
+    color: #ffdca8f1;
+}
+
+.rightarrow {
+    width: fit-content;
+    height: auto;
+    /* border-style: solid;
+    border-width: 2px;
+    border-color: black; */
+    position: relative;
+    left: 90%;
+    top: 25.5%;
+    font-size: 40px;
+    color: #ffdca8f1;
+}
+
+#homerightarrow {
+    width: fit-content;
+    height: auto;
+    /* border-style: solid;
+    border-width: 2px;
+    border-color: black; */
+    position: relative;
+    left: 90%;
+    top: 38.5%;
+    font-size: 40px;
+    color: #ffdca8f1;
 }
 
 .subheading {
@@ -197,7 +240,7 @@ input {
     /* margin-top: 25px; */
 }
 
-/* .gridline-x {
+.gridline-x {
     border-style: solid;
     border-width: 2px;
     border-color: black;
@@ -215,7 +258,7 @@ input {
     width: 100%;
     position: absolute;
     bottom: 50%;
-} */
+}
 
 *::-webkit-scrollbar {
     width: 16px;
@@ -229,4 +272,8 @@ input {
     background-color: #ffffff;
     border-radius: 10px;
     border: 3px none #000000;
+  }
+
+  p {
+    cursor: pointer;
   }
