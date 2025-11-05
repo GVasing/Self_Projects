@@ -12,6 +12,9 @@ const toDo = document.getElementById("todo");
 const inProgress = document.getElementById("inprogress");
 const completed = document.getElementById("completed");
 
+const addButton = document.getElementById("addBtn");
+const newItem = document.getElementById("toDoItem");
+
 function changePage(element, section){
     element.addEventListener("click", function(){
         section.scrollIntoView({behavior: "smooth", inline: "center"});
@@ -25,6 +28,52 @@ changePage(secondLeftArrow, toDo);
 changePage(thirdRightArrow, completed);
 changePage(thirdLeftArrow, inProgress);
 
+function resetTextBoxValue(){
+    newItem.value = "";
+}
+
+function createNewListItem(){
+    // Get text value
+    const itemValue = newItem.value;
+
+    // Create elements and attributes required
+    const newItemLabel = document.createElement("label");
+    newItemLabel.className = "container";
+    const newItemInput = document.createElement("input");
+    newItemInput.type = "checkbox";
+    const newItemSpan = document.createElement("span");
+    newItemSpan.className = "checkmark";
+
+    // Get parent container
+    const listContainer = document.getElementById("toDoListContainer");
+
+    // Add label to parent container
+    listContainer.appendChild(newItemLabel);
+
+    // Add elements to label
+    newItemLabel.appendChild(newItemInput);
+    newItemLabel.appendChild(newItemSpan);
+
+    // Get and add textbox value to label
+    const newItemValue = document.createTextNode(itemValue);
+    newItemLabel.appendChild(newItemValue);
+
+    // Reset textbox
+    resetTextBoxValue();
+}
+
+function addListItems(event){
+    if (event.type === "click"){
+        createNewListItem();
+    } else if (event.type === "keypress"){
+        if (event.key === "Enter"){
+            createNewListItem();
+        }
+    }
+}
+
+addButton.addEventListener("click", addListItems);
+newItem.addEventListener("keypress", addListItems);
 
 // const sections = {
 //     0: home,

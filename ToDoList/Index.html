@@ -22,20 +22,12 @@
         <p class="leftarrow" id="toDoLeftArrow">◄</p>
         <h1 class="mainheading">To Do</h1>
         <div class="parent_container"> 
-            <div class="list_container">
+            <div class="list_container" id="toDoListContainer">
                 <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
+                    <input type="checkbox">
                     <span class="checkmark"></span>
                 </label>
-                <label class="container">Loren Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
+                <!-- <label class="container">Loren Ipsum
                     <input type="checkbox" checked="checked">
                     <span class="checkmark"></span>
                 </label>
@@ -59,7 +51,19 @@
                     <input type="checkbox" checked="checked">
                     <span class="checkmark"></span>
                 </label>
+                <label class="container">Lorem Ipsum
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Lorem Ipsum
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label> -->
             </div>
+            <label class="newItemContainer">
+                <input type="text" id="toDoItem" name="toDo" placeholder="New Item" autofocus required>
+                <button id="addBtn">+</button>
+            </label>
         </div>
         <p class="rightarrow" id="toDoRightArrow">►</p>
         <nav class="navbar">

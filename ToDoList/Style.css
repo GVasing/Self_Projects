@@ -192,6 +192,33 @@ input {
     width: 0;
 }
 
+.newItemContainer {
+    display: block;
+    position: relative;
+    margin-bottom: 32.5px;
+    cursor: pointer;
+    width: fit-content;
+    left: 9%;
+    top: 85%;
+    /* border-style: solid;
+    border-width: 2px;
+    border-color: black; */
+}
+
+#toDoItem {
+    letter-spacing: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    text-align: center;
+}
+
+#addBtn {
+    position: relative;
+    left: 95%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+}
+
 .checkmark {
     position: absolute;
     top: 0;
