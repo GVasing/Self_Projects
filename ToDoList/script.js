@@ -15,6 +15,8 @@ const completed = document.getElementById("completed");
 const addButton = document.getElementById("addBtn");
 const newItem = document.getElementById("toDoItem");
 
+const allListContainers = document.getElementsByClassName("list_container");
+
 function changePage(element, section){
     element.addEventListener("click", function(){
         section.scrollIntoView({behavior: "smooth", inline: "center"});

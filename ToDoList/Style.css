@@ -146,12 +146,20 @@ a:hover {
     border-color: black;
     border-width: 2px; */
     width: 95%;
-    height: 95%;
+    height: 85%;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 7%;
 
     overflow-y: auto;
+}
+
+#toDoListContainer {
+    position: absolute;
+    height: 65%;
+    /* border-style: solid;
+    border-width: 2px;
+    border-color: black; */
 }
 
 input {
@@ -163,7 +171,7 @@ input {
     display: block;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 32.5px;
+    margin-bottom: 34px;
     letter-spacing: 10px;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
@@ -181,7 +189,7 @@ input {
 }
 
 .container:last-child {
-    margin-bottom: 90px;
+    margin-bottom: 0;
 }
 
 .container input {
@@ -199,7 +207,7 @@ input {
     cursor: pointer;
     width: fit-content;
     left: 9%;
-    top: 85%;
+    top: 80%;
     /* border-style: solid;
     border-width: 2px;
     border-color: black; */
@@ -214,7 +222,7 @@ input {
 
 #addBtn {
     position: relative;
-    left: 95%;
+    left: 353px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 22px;
 }
@@ -287,20 +295,44 @@ input {
     bottom: 50%;
 }
 
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
     width: 16px;
   }
 
-  *::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
+*::-webkit-scrollbar-track {
+background: #ffffff;
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: #ffffff;
-    border-radius: 10px;
-    border: 3px none #000000;
-  }
+*::-webkit-scrollbar-thumb {
+background-color: #ffffff;
+border-radius: 10px;
+border: 3px none #000000;
+} */
 
-  p {
-    cursor: pointer;
-  }
+div::-webkit-scrollbar {
+    width: 16px;
+}
+
+body::-webkit-scrollbar {
+    width: 16px;
+    background: white;
+}
+
+div::-webkit-scrollbar-track {
+background: #ffffff;
+}
+
+div::-webkit-scrollbar-thumb {
+/* background-color: #ffffff; */
+/* background-color: #ffdca8f1; */
+border-radius: 10px;
+/* border: 3px none #000000; */
+border-color: black;
+border-style: solid;
+border-width: 2px;
+margin-top: 10px;
+}
+
+p {
+cursor: pointer;
+}
