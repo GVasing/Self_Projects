@@ -51,12 +51,8 @@ function createNewListItem(){
     newItemSpan.className = "checkmark";
     const newItemMenuButton = document.createElement("button");
     newItemMenuButton.className = "options";
-    const newItemMenuContainer = document.createElement("div");
-    newItemMenuContainer.className = "optionsContainer";
-    const deleteButton = document.createElement("button");
-    const renameButton = document.createElement("button");
-    deleteButton.className = "optionBtn";
-    renameButton.className = "optionBtn";
+    const newItemButtonLink = document.createElement("a");
+    newItemButtonLink.href = "#OptionsToDo";
 
     // Get parent container
     const listContainer = document.getElementById("toDoListContainer");
@@ -67,22 +63,19 @@ function createNewListItem(){
     // Add elements to label
     newItemLabel.appendChild(newItemInput);
     newItemLabel.appendChild(newItemSpan);
-    newItemLabel.appendChild(newItemMenuButton);
-    newItemLabel.appendChild(newItemMenuContainer);
-    newItemMenuContainer.appendChild(deleteButton);
-    newItemMenuContainer.appendChild(renameButton);
+    // newItemLabel.appendChild(newItemMenuButton);
+    newItemLabel.appendChild(newItemButtonLink);
 
     // Get and add textbox value to label
     const newItemValue = document.createTextNode(itemValue);
     newItemLabel.appendChild(newItemValue);
 
+    // Add button to anchor element
+    newItemButtonLink.appendChild(newItemMenuButton);
+
     // Create values for buttons and add to them
     const buttonValue = document.createTextNode("⁝");
-    const deleteBtnValue = document.createTextNode("Delete");
-    const renameBtnValue = document.createTextNode("Re-Name");
     newItemMenuButton.appendChild(buttonValue);
-    deleteButton.appendChild(deleteBtnValue);
-    renameButton.appendChild(renameBtnValue);
 
     // Reset textbox
     resetTextBoxValue();
