@@ -54,6 +54,16 @@ h1 {
     color: #ffdca8f1;
 }
 
+.leftarrow:hover, .rightarrow:hover {
+    color: #feac31f1;
+    transition-duration: 0.5s;
+}
+
+#homerightarrow:hover {
+    color: #feac31f1;
+    transition-duration: 0.5s;
+}
+
 #homerightarrow {
     width: fit-content;
     height: auto;
@@ -135,15 +145,6 @@ a:hover {
     overflow-y: auto;
 }
 
-#toDoListContainer {
-    position: absolute;
-    height: 60%;
-    top: 14%;
-    /* border-style: solid;
-    border-width: 2px;
-    border-color: black; */
-}
-
 .container {
     display: block;
     position: relative;
@@ -151,13 +152,19 @@ a:hover {
     margin-bottom: 34px;
     letter-spacing: 10px;
     font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
+    /* cursor: pointer; */
     font-size: 22px;
     /* border-style: solid;
     border-width: 2px;
     border-color: black; */
     width: fit-content;
     left: 10%;
+}
+
+#toDoListContainer {
+    position: absolute;
+    height: 60%;
+    top: 14%;
 }
 
 .container:last-child {
@@ -169,19 +176,22 @@ a:hover {
     top: 0;
 }
 
-.container input {
+.container > input {
     position: absolute;
-    opacity: 0;
+    /* opacity: 0; */
     cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 285.725px;
     height: 0;
     width: 0;
+    /* left: 289.5px; */
 }
 
 .newItemContainer {
     display: block;
     position: relative;
     margin-bottom: 32.5px;
-    cursor: pointer;
     width: fit-content;
     left: 9%;
     top: 80%;
@@ -199,22 +209,39 @@ a:hover {
 
 #addBtn {
     position: relative;
-    left: 353px;
+    left: 357px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 22px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    box-shadow: none;
+    color: #ffdca8f1;
+}
+
+#addBtn:hover {
+    color: #feac31f1;
+    transition-duration: 0.5s;
 }
 
 .checkmark {
     position: absolute;
+    cursor: pointer;
     top: 0;
     left: 0;
+    right: 285.725px;
     height: 25px;
     width: 25px;
     background-color: #eee;
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+/* .container:hover input ~ .checkmark {
+    background-color: #ccc;
+} */
+
+/* On mouse-over, add a grey background color */
+.checkmark:hover {
     background-color: #ccc;
 }
 
@@ -246,6 +273,54 @@ a:hover {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.options {
+    position: absolute;
+    top: -3px;
+    left: 100%;
+    color: grey;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    /* border-style: solid;
+    border-width: 2px;
+    border-color: black; */
+}
+
+.options:hover, .options:focus {
+    color: black;
+}
+
+.optionsContainer {
+    /* display: none; */
+    /* display: inline; */
+    position: absolute;
+    height: fit-content;
+    left: 150%;
+    background-color: white;
+    width: fit-content;
+    /* border-style: solid;
+    border-width: 2px;
+    border-color: black; */
+    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1; */
+} 
+
+.optionsContainer > button{
+    color: black;
+    display: inline-block;
+    position: relative;
+    bottom: 100%;
+    width: 70%;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 5px;
+}
+
+.optionsContainer > button:hover {
+    background-color: #ddd;
 }
 
 .gridline-x {
@@ -291,4 +366,55 @@ margin-top: 10px;
 
 p {
 cursor: pointer;
+}
+
+.optionsOverlay {
+    position: fixed;
+    /* display: block; */
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(127, 127, 127, 0.5);
+    transition: ease 1.5s;
+    backdrop-filter: blur(15px);
+    z-index: 1;
+}
+
+.optionsOverlay:target {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+.optionsButtonContainer {
+    position: relative;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.optionsButton {
+    border: none;
+    background: none;
+    box-shadow: none;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    height: fit-content;
+    display: block;
+    position: relative;
+    left: 40%;
+    top: 40%;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.optionsButton:hover {
+    text-decoration: underline;
+    transition-duration: 2s;
 }

@@ -17,6 +17,10 @@ const newItem = document.getElementById("toDoItem");
 
 const allListContainers = document.getElementsByClassName("list_container");
 
+const optionsMenuButton = document.getElementsByClassName("options");
+const optionButtons = document.getElementsByClassName("optionBtn");
+const optionsMenuContainer = document.getElementsByClassName("optionsContainer");
+
 function changePage(element, section){
     element.addEventListener("click", function(){
         section.scrollIntoView({behavior: "smooth", inline: "center"});
@@ -45,6 +49,14 @@ function createNewListItem(){
     newItemInput.type = "checkbox";
     const newItemSpan = document.createElement("span");
     newItemSpan.className = "checkmark";
+    const newItemMenuButton = document.createElement("button");
+    newItemMenuButton.className = "options";
+    const newItemMenuContainer = document.createElement("div");
+    newItemMenuContainer.className = "optionsContainer";
+    const deleteButton = document.createElement("button");
+    const renameButton = document.createElement("button");
+    deleteButton.className = "optionBtn";
+    renameButton.className = "optionBtn";
 
     // Get parent container
     const listContainer = document.getElementById("toDoListContainer");
@@ -55,10 +67,22 @@ function createNewListItem(){
     // Add elements to label
     newItemLabel.appendChild(newItemInput);
     newItemLabel.appendChild(newItemSpan);
+    newItemLabel.appendChild(newItemMenuButton);
+    newItemLabel.appendChild(newItemMenuContainer);
+    newItemMenuContainer.appendChild(deleteButton);
+    newItemMenuContainer.appendChild(renameButton);
 
     // Get and add textbox value to label
     const newItemValue = document.createTextNode(itemValue);
     newItemLabel.appendChild(newItemValue);
+
+    // Create values for buttons and add to them
+    const buttonValue = document.createTextNode("⁝");
+    const deleteBtnValue = document.createTextNode("Delete");
+    const renameBtnValue = document.createTextNode("Re-Name");
+    newItemMenuButton.appendChild(buttonValue);
+    deleteButton.appendChild(deleteBtnValue);
+    renameButton.appendChild(renameBtnValue);
 
     // Reset textbox
     resetTextBoxValue();
@@ -76,6 +100,16 @@ function addListItems(event){
 
 addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
+
+// optionsMenuButton.addEventListener("click", function(){
+//     const optionsMenuOverlay = document.getElementsByClassName("optionsOverlay");
+//     optionsMenuOverlay.style.opacity = "1";
+// })
+
+// optionsMenuButton.addEventListener("click", function(){
+//     const optionMenuContainer = document.getElementsByClassName("optionsContainer");
+//     optionMenuContainer.style.display = ""
+// })
 
 // const sections = {
 //     0: home,

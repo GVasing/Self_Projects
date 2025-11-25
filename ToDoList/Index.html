@@ -25,43 +25,16 @@
             <div class="list_container" id="toDoListContainer">
                 <label class="container">Lorem Ipsum
                     <input type="checkbox">
-                    <span class="checkmark"></span>
+                    <div class="checkmark"></div>
+                    <a href="#Options"><button class="options">&#x205D;</button></a>
+                    <div class="optionsContainer" id="toDoOptions">
+                        <!-- <button class="optionBtn" id="deleteBtn">Delete</button>
+                        <button class="optionBtn" id="renameBtn">Re-Name</button> -->
+                    </div>
                 </label>
-                <!-- <label class="container">Loren Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Lorem Ipsum
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label> -->
             </div>
             <label class="newItemContainer">
-                <input type="text" id="toDoItem" name="toDo" placeholder="New Item" autofocus required>
+                <input type="text" id="toDoItem" name="toDo" placeholder="New Item">
                 <button id="addBtn">+</button>
             </label>
         </div>
@@ -71,6 +44,15 @@
             <a href="#inprogress" class="subheading">In Progress</a>
             <a href="#completed" class="subheading">Completed</a>
         </nav>
+        <div id="Options" class="optionsOverlay">
+            <a class="closebutton" href="#todo">&times;</a>
+            <div class="optionsButtonContainer">
+                <button class="optionsButton">Re-Name</button>
+                <button class="optionsButton">Delete</button>
+                <button class="optionsButton">Move to 'In Progress'</button>
+                <button class="optionsButton">Move to 'Complete'</button>
+            </div>
+        </div>
     </section>
     <section id="inprogress">
         <p class="leftarrow" id="inProgressLeftArrow">◄</p>
