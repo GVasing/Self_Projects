@@ -49,7 +49,7 @@ h1 {
     border-color: black; */
     position: relative;
     left: 90%;
-    top: 25.5%;
+    top: 26%;
     font-size: 40px;
     color: #ffdca8f1;
 }
@@ -161,11 +161,11 @@ a:hover {
     left: 10%;
 }
 
-/* #toDoListContainer {
+#toDoListContainer {
     position: absolute;
     height: 60%;
     top: 14%;
-} */
+}
 
 .container:last-child {
     margin-bottom: 0;
