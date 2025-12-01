@@ -53,7 +53,12 @@ changePage(thirdLeftArrow, inProgress);
 
 function resetTextBoxValue(){
     newItem.value = "";
+    renamedItem.value = "";
 }
+
+// function resetRenameTextBoxValue(){
+//     renamedItem.value = "";
+// }
 
 function createNewListItem(){
     // Get text value
@@ -135,6 +140,8 @@ function renameItem(){
             console.log(child.nodeValue);
         };
     };
+    // Reset textbox
+    resetTextBoxValue();
 }
 
 addButton.addEventListener("click", addListItems);
