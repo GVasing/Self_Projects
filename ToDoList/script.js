@@ -150,9 +150,25 @@ function renameItem(){
     optionsOverlayClose();
 }
 
+function deleteItem(){
+    // Access item by global variable 
+    const itemToDelete = document.getElementById(currentItemId);
+
+    // Track back to grandparent container
+    const parentContainer = itemToDelete.parentElement;
+    const grandparentContainer = parentContainer.parentElement;
+
+    // Remove container
+    grandparentContainer.remove();
+
+    // Change overlay opacity
+    optionsOverlayClose();
+}
+
 addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
 renameButton.addEventListener("click", renameItem);
+deleteButton.addEventListener("click", deleteItem);
 
 
 // const itemToRename = document.getElementById(currentItemId);
