@@ -38,6 +38,7 @@ const optionsMenuContainer = document.getElementsByClassName("optionsContainer")
 const renameButton = document.getElementById("renameButton");
 const deleteButton = document.getElementById("deleteButton");
 const moveToInProgressButton = document.getElementById("moveInProgressButton");
+const moveToCompletedButton = document.getElementById("moveCompletedButton");
 
 function changePage(element, section){
     element.addEventListener("click", function(){
@@ -116,7 +117,7 @@ function createNewListItem(){
     resetTextBoxValue();
 }
 
-function moveListItem(){
+function moveListItemToInProgress(){
     // Get item value
     const itemToMove = document.getElementById(currentItemId);
     const parentContainer = itemToMove.parentElement;
@@ -124,6 +125,28 @@ function moveListItem(){
 
     // Get parent container
     const listContainer = document.getElementById("inProgressListContainer");
+
+    // Add item to container
+    listContainer.appendChild(grandparentContainer);
+
+    // Loop through each options button and add an event listener
+    for (const menuButton of optionsMenuButtons){
+        console.log(menuButton);
+        menuButton.addEventListener("click", retrieveElementId);
+    };
+
+    // Change overlay opacity
+    optionsOverlayClose();
+}
+
+function moveListItemToCompleted(){
+    // Get item value
+    const itemToMove = document.getElementById(currentItemId);
+    const parentContainer = itemToMove.parentElement;
+    const grandparentContainer = parentContainer.parentElement;
+
+    // Get parent container
+    const listContainer = document.getElementById("completedListContainer");
 
     // Add item to container
     listContainer.appendChild(grandparentContainer);
@@ -192,7 +215,8 @@ addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
 renameButton.addEventListener("click", renameItem);
 deleteButton.addEventListener("click", deleteItem);
-moveToInProgressButton.addEventListener("click", moveListItem);
+moveToInProgressButton.addEventListener("click", moveListItemToInProgress);
+moveToCompletedButton.addEventListener("click", moveListItemToCompleted);
 
 
 // const itemToRename = document.getElementById(currentItemId);
