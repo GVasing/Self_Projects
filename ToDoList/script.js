@@ -34,11 +34,23 @@ const optionsMenuButtons = document.getElementsByClassName("options");
 const optionButtons = document.getElementsByClassName("optionBtn");
 const optionsMenuContainer = document.getElementsByClassName("optionsContainer");
 
-// Options Menu Buttons
+// Options Menu Buttons for 'To Do' section
 const renameButton = document.getElementById("renameButton");
 const deleteButton = document.getElementById("deleteButton");
 const moveToInProgressButton = document.getElementById("moveInProgressButton");
 const moveToCompletedButton = document.getElementById("moveCompletedButton");
+
+// Options Menu Buttons for 'In Progress' section
+const renameButtonInProg = document.getElementById("renameButtonInProg");
+const deleteButtonInProg = document.getElementById("deleteButtonInProg");
+const moveToToDoButtonInProg = document.getElementById("moveToDoButtonInProg");
+const moveToCompletedButtonInProg = document.getElementById("moveCompButtonInProg");
+
+// Options Menu Buttons for 'Completed' section
+const renameButtonComp = document.getElementById("renameButtonComp");
+const deleteButtonComp = document.getElementById("deleteButtonComp");
+const moveToToDoButtonComp = document.getElementById("moveToDoButtonComp");
+const moveToInProgressButtonComp = document.getElementById("moveInProgButtonComp");
 
 function changePage(element, section){
     element.addEventListener("click", function(){
@@ -58,12 +70,13 @@ function resetTextBoxValue(){
     renamedItem.value = "";
 }
 
-function optionsOverlayClose(){
-    const optionsOverlay = document.getElementsByClassName("optionsOverlay");
-    for (const overlay of optionsOverlay){
-        overlay.style.opacity = "0";
-    };
-}
+// function optionsOverlayClose(){
+//     const optionsOverlay = document.getElementsByClassName("optionsOverlay");
+//     for (const overlay of optionsOverlay){
+//         // overlay.style.opacity = "0";
+//         // overlay.style.pointerEvents = "none";
+//     };
+// }
 
 function createNewListItem(){
     // Get text value
@@ -120,8 +133,11 @@ function createNewListItem(){
 function moveListItemToInProgress(){
     // Get item value
     const itemToMove = document.getElementById(currentItemId);
-    const parentContainer = itemToMove.parentElement;
+    const parentContainer = itemToMove.parentElement;  
     const grandparentContainer = parentContainer.parentElement;
+
+    // Change link/href for tricolon
+    parentContainer.href = "#OptionsInProgress";
 
     // Get parent container
     const listContainer = document.getElementById("inProgressListContainer");
@@ -136,7 +152,7 @@ function moveListItemToInProgress(){
     };
 
     // Change overlay opacity
-    optionsOverlayClose();
+    // optionsOverlayClose();
 }
 
 function moveListItemToCompleted(){
@@ -144,6 +160,9 @@ function moveListItemToCompleted(){
     const itemToMove = document.getElementById(currentItemId);
     const parentContainer = itemToMove.parentElement;
     const grandparentContainer = parentContainer.parentElement;
+
+    // Change link/href for tricolon
+    parentContainer.href = "#OptionsComplete";
 
     // Get parent container
     const listContainer = document.getElementById("completedListContainer");
@@ -158,7 +177,32 @@ function moveListItemToCompleted(){
     };
 
     // Change overlay opacity
-    optionsOverlayClose();
+    // optionsOverlayClose();
+}
+
+function moveListItemToToDo(){
+    // Get item value
+    const itemToMove = document.getElementById(currentItemId);
+    const parentContainer = itemToMove.parentElement;
+    const grandparentContainer = parentContainer.parentElement;
+
+    // Change link/href for tricolon
+    parentContainer.href = "#OptionsToDo";
+
+    // Get parent container
+    const listContainer = document.getElementById("toDoListContainer");
+
+    // Add item to container
+    listContainer.appendChild(grandparentContainer);
+
+    // Loop through each options button and add an event listener
+    for (const menuButton of optionsMenuButtons){
+        console.log(menuButton);
+        menuButton.addEventListener("click", retrieveElementId);
+    };
+
+    // Change overlay opacity
+    // optionsOverlayClose();
 }
 
 function addListItems(event){
@@ -193,7 +237,7 @@ function renameItem(){
     resetTextBoxValue();
 
     // Change overlay opacity
-    optionsOverlayClose();
+    // optionsOverlayClose();
 }
 
 function deleteItem(){
@@ -208,16 +252,32 @@ function deleteItem(){
     grandparentContainer.remove();
 
     // Change overlay opacity
-    optionsOverlayClose();
+    // optionsOverlayClose();
 }
 
 addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
+
+// Event Listeners for 'To Do' section option buttons
 renameButton.addEventListener("click", renameItem);
 deleteButton.addEventListener("click", deleteItem);
 moveToInProgressButton.addEventListener("click", moveListItemToInProgress);
 moveToCompletedButton.addEventListener("click", moveListItemToCompleted);
 
+// Event Listeners for 'In Progress' section option buttons
+renameButtonInProg.addEventListener("click", renameItem);
+deleteButtonInProg.addEventListener("click", deleteItem);
+moveToToDoButtonInProg.addEventListener("click", moveListItemToToDo);
+moveToCompletedButtonInProg.addEventListener("click", moveListItemToCompleted);
+
+// Event Listeners for 'Completed' section option buttons
+renameButtonComp.addEventListener("click", renameItem);
+deleteButtonComp.addEventListener("click", deleteItem);
+moveToToDoButtonComp.addEventListener("click", moveListItemToToDo);
+moveToInProgressButtonComp.addEventListener("click", moveListItemToInProgress);
+
+
+// click on button (class=options) and .optionsOverlay opacity should change to 1.
 
 // const itemToRename = document.getElementById(currentItemId);
 // const parentContainer = itemToRename.parentElement;

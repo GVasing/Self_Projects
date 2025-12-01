@@ -46,10 +46,10 @@
             <a class="closebutton" href="#todo">&times;</a>
             <div class="optionsButtonContainer">
                 <input type="text" id="renameInput" class="test" placeholder="Lorem Ipsum"></input>
-                <button class="optionsButton" id="renameButton">Re-Name</button>
-                <button class="optionsButton"id="deleteButton">Delete</button>
-                <button class="optionsButton" id="moveInProgressButton">Move to 'In Progress'</button>
-                <button class="optionsButton"id="moveCompletedButton">Move to 'Complete'</button>
+                <a href="#todo"><button class="optionsButton" id="renameButton">Re-Name</button></a>
+                <a href="#todo"><button class="optionsButton"id="deleteButton">Delete</button></a>
+                <a href="#todo"><button class="optionsButton" id="moveInProgressButton">Move to 'In Progress'</button></a>
+                <a href="#todo"><button class="optionsButton"id="moveCompletedButton">Move to 'Complete'</button></a>
             </div>
         </div>
     </section>
@@ -58,11 +58,11 @@
         <h1 class="mainheading">In Progress</h1>
         <div class="parent_container">
             <div class="list_container" id="inProgressListContainer">
-                <label class="container">Lorem Ipsum
+                <!-- <label class="container">Lorem Ipsum
                     <input type="checkbox" checked="checked">
                     <span class="checkmark"></span>
                     <a href="#OptionsInProgress"><button class="options">&#x205D;</button></a>
-                </label>
+                </label> -->
                 <!-- <label class="container">Loren Ipsum
                     <input type="checkbox" checked="checked">
                     <span class="checkmark"></span>
@@ -108,10 +108,10 @@
         <div id="OptionsInProgress" class="optionsOverlay">
             <a class="closebutton" href="#inprogress">&times;</a>
             <div class="optionsButtonContainer">
-                <button class="optionsButton">Re-Name</button>
-                <button class="optionsButton">Delete</button>
-                <button class="optionsButton">Move to 'In Progress'</button>
-                <button class="optionsButton">Move to 'Complete'</button>
+                <a href="#inprogress"><button class="optionsButton" id="renameButtonInProg">Re-Name</button></a>
+                <a href="#inprogress"><button class="optionsButton" id="deleteButtonInProg">Delete</button></a>
+                <a href="#inprogress"><button class="optionsButton" id="moveToDoButtonInProg">Move to 'To Do'</button></a>
+                <a href="#inprogress"><button class="optionsButton" id="moveCompButtonInProg">Move to 'Complete'</button></a>
             </div>
         </div>
     </section>
@@ -169,10 +169,10 @@
         <div id="OptionsComplete" class="optionsOverlay">
             <a class="closebutton" href="#completed">&times;</a>
             <div class="optionsButtonContainer">
-                <button class="optionsButton">Re-Name</button>
-                <button class="optionsButton">Delete</button>
-                <button class="optionsButton">Move to 'In Progress'</button>
-                <button class="optionsButton">Move to 'Complete'</button>
+                <a href="#completed"><button class="optionsButton" id="renameButtonComp">Re-Name</button></a>
+                <a href="#completed"><button class="optionsButton" id="deleteButtonComp">Delete</button></a>
+                <a href="#completed"><button class="optionsButton" id="moveToDoButtonComp">Move to 'To Do'</button></a>
+                <a href="#completed"><button class="optionsButton" id="moveInProgButtonComp">Move to 'In Progress'</button></a>
             </div>
         </div>
     </section>
