@@ -1,3 +1,9 @@
+// Global counter
+let counter = 0 
+
+// Global variables
+let currentItemId = null;
+
 // Get elements
 const firstRightArrow = document.getElementById("homerightarrow");
 const secondRightArrow = document.getElementById("toDoRightArrow");
@@ -17,9 +23,20 @@ const newItem = document.getElementById("toDoItem");
 
 const allListContainers = document.getElementsByClassName("list_container");
 
-const optionsMenuButton = document.getElementsByClassName("options");
+const renamedItem = document.getElementById("renameInput");
+
+// This is a collection because there are multiple
+const allLabelContainers = document.getElementsByClassName("container");
+
+// This is a collection because there are multiple
+const optionsMenuButtons = document.getElementsByClassName("options");
+
 const optionButtons = document.getElementsByClassName("optionBtn");
 const optionsMenuContainer = document.getElementsByClassName("optionsContainer");
+
+// Options Menu Buttons
+const renameButton = document.getElementById("renameButton");
+const deleteButton = document.getElementById("deleteButton");
 
 function changePage(element, section){
     element.addEventListener("click", function(){
@@ -51,6 +68,7 @@ function createNewListItem(){
     newItemSpan.className = "checkmark";
     const newItemMenuButton = document.createElement("button");
     newItemMenuButton.className = "options";
+    newItemMenuButton.id = "item-" + counter;
     const newItemButtonLink = document.createElement("a");
     newItemButtonLink.href = "#OptionsToDo";
 
@@ -63,7 +81,6 @@ function createNewListItem(){
     // Add elements to label
     newItemLabel.appendChild(newItemInput);
     newItemLabel.appendChild(newItemSpan);
-    // newItemLabel.appendChild(newItemMenuButton);
     newItemLabel.appendChild(newItemButtonLink);
 
     // Get and add textbox value to label
@@ -76,6 +93,15 @@ function createNewListItem(){
     // Create values for buttons and add to them
     const buttonValue = document.createTextNode("⁝");
     newItemMenuButton.appendChild(buttonValue);
+
+    // Increment counter
+    counter ++;
+
+    // Loop through each options button and add an event listener
+    for (const menuButton of optionsMenuButtons){
+        console.log(menuButton);
+        menuButton.addEventListener("click", retrieveElementId);
+    };
 
     // Reset textbox
     resetTextBoxValue();
@@ -91,8 +117,42 @@ function addListItems(event){
     }
 }
 
+function retrieveElementId(event) {
+    const clickedElement = event.target;
+    const buttonId = clickedElement.getAttribute('id');
+    currentItemId = buttonId;
+    console.log(currentItemId);
+}
+
+function renameItem(){
+    const newName = renamedItem.value;
+    const itemToRename = document.getElementById(currentItemId);
+    const parentContainer = itemToRename.parentElement;
+    const grandparentContainer = parentContainer.parentElement;
+    for (const child of grandparentContainer.childNodes){
+        if (child.nodeType === Node.TEXT_NODE){
+            child.nodeValue = newName;
+            console.log(child.nodeValue);
+        };
+    };
+}
+
 addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
+renameButton.addEventListener("click", renameItem);
+
+
+// const itemToRename = document.getElementById(currentItemId);
+// const parentContainer = itemToRename.parentElement;
+// const grandparentContainer = parentContainer.parentElement;
+// console.log(grandparentContainer);
+// for (const child of grandparentContainer.childNodes){
+//     if (child.nodeType === Node.TEXT_NODE){
+//         const containerText = child.nodeValue;            
+//         console.log(containerText);
+//         return containerText;
+//     };
+// };
 
 // optionsMenuButton.addEventListener("click", function(){
 //     const optionsMenuOverlay = document.getElementsByClassName("optionsOverlay");
