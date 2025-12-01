@@ -56,9 +56,12 @@ function resetTextBoxValue(){
     renamedItem.value = "";
 }
 
-// function resetRenameTextBoxValue(){
-//     renamedItem.value = "";
-// }
+function optionsOverlayClose(){
+    const optionsOverlay = document.getElementsByClassName("optionsOverlay");
+    for (const overlay of optionsOverlay){
+        overlay.style.opacity = "0";
+    };
+}
 
 function createNewListItem(){
     // Get text value
@@ -142,6 +145,9 @@ function renameItem(){
     };
     // Reset textbox
     resetTextBoxValue();
+
+    // Change overlay opacity
+    optionsOverlayClose();
 }
 
 addButton.addEventListener("click", addListItems);
