@@ -37,6 +37,7 @@ const optionsMenuContainer = document.getElementsByClassName("optionsContainer")
 // Options Menu Buttons
 const renameButton = document.getElementById("renameButton");
 const deleteButton = document.getElementById("deleteButton");
+const moveToInProgressButton = document.getElementById("moveInProgressButton");
 
 function changePage(element, section){
     element.addEventListener("click", function(){
@@ -115,6 +116,28 @@ function createNewListItem(){
     resetTextBoxValue();
 }
 
+function moveListItem(){
+    // Get item value
+    const itemToMove = document.getElementById(currentItemId);
+    const parentContainer = itemToMove.parentElement;
+    const grandparentContainer = parentContainer.parentElement;
+
+    // Get parent container
+    const listContainer = document.getElementById("inProgressListContainer");
+
+    // Add item to container
+    listContainer.appendChild(grandparentContainer);
+
+    // Loop through each options button and add an event listener
+    for (const menuButton of optionsMenuButtons){
+        console.log(menuButton);
+        menuButton.addEventListener("click", retrieveElementId);
+    };
+
+    // Change overlay opacity
+    optionsOverlayClose();
+}
+
 function addListItems(event){
     if (event.type === "click"){
         createNewListItem();
@@ -169,6 +192,7 @@ addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
 renameButton.addEventListener("click", renameItem);
 deleteButton.addEventListener("click", deleteItem);
+moveToInProgressButton.addEventListener("click", moveListItem);
 
 
 // const itemToRename = document.getElementById(currentItemId);
