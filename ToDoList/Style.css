@@ -438,3 +438,14 @@ p {
     text-decoration: underline;
     transition-duration: 2s;
 }
+
+.closebutton {
+    position: relative;
+    left: 8px;
+    top: 8px;
+    font-size: 30px;
+}
+
+.closebutton:hover{
+    text-decoration: none;
+}
