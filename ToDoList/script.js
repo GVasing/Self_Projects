@@ -72,7 +72,9 @@ changePage(thirdLeftArrow, inProgress);
 
 function resetTextBoxValue(){
     newItem.value = "";
-    renamedItem.value = "";
+    renamedItemToDo.value = "";
+    renamedItemInProgress.value = "";
+    renamedItemCompleted.value = "";
 }
 
 // function optionsOverlayClose(){
