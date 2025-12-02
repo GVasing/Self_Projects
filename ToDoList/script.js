@@ -57,6 +57,11 @@ const moveToInProgressButtonComp = document.getElementById("moveInProgButtonComp
 // Collection because there are multiple
 const closeButtons = document.getElementsByClassName("closebutton");
 
+// Close buttons
+const closeToDo = document.getElementById("closeButtonToDo");
+const closeInProg = document.getElementById("closeButtonInProg");
+const closeComp = document.getElementById("closeButtonComp");
+
 function changePage(element, section){
     element.addEventListener("click", function(){
         section.scrollIntoView({behavior: "smooth", inline: "center"});
@@ -76,14 +81,6 @@ function resetTextBoxValue(){
     renamedItemInProgress.value = "";
     renamedItemCompleted.value = "";
 }
-
-// function optionsOverlayClose(){
-//     const optionsOverlay = document.getElementsByClassName("optionsOverlay");
-//     for (const overlay of optionsOverlay){
-//         // overlay.style.opacity = "0";
-//         // overlay.style.pointerEvents = "none";
-//     };
-// }
 
 function createNewListItem(){
     // Get text value
@@ -157,9 +154,6 @@ function moveListItemToInProgress(){
         console.log(menuButton);
         menuButton.addEventListener("click", retrieveElementId);
     };
-
-    // Change overlay opacity
-    // optionsOverlayClose();
 }
 
 function moveListItemToCompleted(){
@@ -182,9 +176,6 @@ function moveListItemToCompleted(){
         console.log(menuButton);
         menuButton.addEventListener("click", retrieveElementId);
     };
-
-    // Change overlay opacity
-    // optionsOverlayClose();
 }
 
 function moveListItemToToDo(){
@@ -207,9 +198,6 @@ function moveListItemToToDo(){
         console.log(menuButton);
         menuButton.addEventListener("click", retrieveElementId);
     };
-
-    // Change overlay opacity
-    // optionsOverlayClose();
 }
 
 function addListItems(event){
@@ -242,9 +230,19 @@ function renameItemToDo(){
     };
     // Reset textbox
     resetTextBoxValue();
+    
+    // Close modal window
+    closeToDo.click();
+}
 
-    // Change overlay opacity
-    // optionsOverlayClose();
+function renameToDoListItems(event){
+    if (event.type === "click"){
+        renameItemToDo();
+    } else if (event.type === "keypress"){
+        if (event.key === "Enter"){
+            renameItemToDo();
+        };
+    }
 }
 
 function renameItemInProg(){
@@ -261,8 +259,18 @@ function renameItemInProg(){
     // Reset textbox
     resetTextBoxValue();
 
-    // Change overlay opacity
-    // optionsOverlayClose();
+    // Close modal window
+    closeInProg.click();
+}
+
+function renameInProgressListItems(event){
+    if (event.type === "click"){
+        renameItemInProg();
+    } else if (event.type === "keypress"){
+        if (event.key === "Enter"){
+            renameItemInProg();
+        };
+    }
 }
 
 function renameItemComp(){
@@ -279,8 +287,18 @@ function renameItemComp(){
     // Reset textbox
     resetTextBoxValue();
 
-    // Change overlay opacity
-    // optionsOverlayClose();
+    // Close modal window
+    closeComp.click();
+}
+
+function renameCompletedListItems(event){
+    if (event.type === "click"){
+        renameItemComp();
+    } else if (event.type === "keypress"){
+        if (event.key === "Enter"){
+            renameItemComp();
+        };
+    }
 }
 
 function deleteItem(){
@@ -293,9 +311,6 @@ function deleteItem(){
 
     // Remove container
     grandparentContainer.remove();
-
-    // Change overlay opacity
-    // optionsOverlayClose();
 }
 
 addButton.addEventListener("click", addListItems);
@@ -315,65 +330,24 @@ document.addEventListener("keydown", (event) => {
 });
 
 // Event Listeners for 'To Do' section option buttons
-renameButton.addEventListener("click", renameItemToDo);
+renameButton.addEventListener("click", renameToDoListItems);
 deleteButton.addEventListener("click", deleteItem);
 moveToInProgressButton.addEventListener("click", moveListItemToInProgress);
 moveToCompletedButton.addEventListener("click", moveListItemToCompleted);
 
 // Event Listeners for 'In Progress' section option buttons
-renameButtonInProg.addEventListener("click", renameItemInProg);
+renameButtonInProg.addEventListener("click", renameInProgressListItems);
 deleteButtonInProg.addEventListener("click", deleteItem);
 moveToToDoButtonInProg.addEventListener("click", moveListItemToToDo);
 moveToCompletedButtonInProg.addEventListener("click", moveListItemToCompleted);
 
 // Event Listeners for 'Completed' section option buttons
-renameButtonComp.addEventListener("click", renameItemComp);
+renameButtonComp.addEventListener("click", renameCompletedListItems);
 deleteButtonComp.addEventListener("click", deleteItem);
 moveToToDoButtonComp.addEventListener("click", moveListItemToToDo);
 moveToInProgressButtonComp.addEventListener("click", moveListItemToInProgress);
 
-
-// click on button (class=options) and .optionsOverlay opacity should change to 1.
-
-// const itemToRename = document.getElementById(currentItemId);
-// const parentContainer = itemToRename.parentElement;
-// const grandparentContainer = parentContainer.parentElement;
-// console.log(grandparentContainer);
-// for (const child of grandparentContainer.childNodes){
-//     if (child.nodeType === Node.TEXT_NODE){
-//         const containerText = child.nodeValue;            
-//         console.log(containerText);
-//         return containerText;
-//     };
-// };
-
-// optionsMenuButton.addEventListener("click", function(){
-//     const optionsMenuOverlay = document.getElementsByClassName("optionsOverlay");
-//     optionsMenuOverlay.style.opacity = "1";
-// })
-
-// optionsMenuButton.addEventListener("click", function(){
-//     const optionMenuContainer = document.getElementsByClassName("optionsContainer");
-//     optionMenuContainer.style.display = ""
-// })
-
-// const sections = {
-//     0: home,
-//     1: toDo,
-//     2: inProgress
-// };
-
-// // const leftArrows = document.getElementsByClassName("leftarrow")
-// const leftArrows = document.querySelectorAll(".leftarrow");
-// const rightArrow = document.getElementsByClassName("rightarrow")
-
-// function goBackwards(sectionId){
-//     leftArrows.forEach(item => {
-//         item.addEventListener("click", function(){
-//             const desiredSect = document.getElementById(`${sectionId}`);
-//             desiredSect.scrollIntoView({behavior: "smooth", inline: "center"});
-//         });
-//     })
-// }
-
-// goBackwards("home");
+// Event Listeners for each options menu rename input box
+renamedItemToDo.addEventListener("keypress", renameToDoListItems);
+renamedItemInProgress.addEventListener("keypress", renameInProgressListItems);
+renamedItemCompleted.addEventListener("keypress", renameCompletedListItems);
