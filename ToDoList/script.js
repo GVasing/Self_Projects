@@ -23,7 +23,9 @@ const newItem = document.getElementById("toDoItem");
 
 const allListContainers = document.getElementsByClassName("list_container");
 
-const renamedItem = document.getElementById("renameInput");
+const renamedItemToDo = document.getElementById("renameInputToDo");
+const renamedItemInProgress = document.getElementById("renameInputInProg");
+const renamedItemCompleted = document.getElementById("renameInputComp");
 
 // This is a collection because there are multiple
 const allLabelContainers = document.getElementsByClassName("container");
@@ -222,8 +224,44 @@ function retrieveElementId(event) {
     console.log(currentItemId);
 }
 
-function renameItem(){
-    const newName = renamedItem.value;
+function renameItemToDo(){
+    const newName = renamedItemToDo.value;
+    const itemToRename = document.getElementById(currentItemId);
+    const parentContainer = itemToRename.parentElement;
+    const grandparentContainer = parentContainer.parentElement;
+    for (const child of grandparentContainer.childNodes){
+        if (child.nodeType === Node.TEXT_NODE){
+            child.nodeValue = newName;
+            console.log(child.nodeValue);
+        };
+    };
+    // Reset textbox
+    resetTextBoxValue();
+
+    // Change overlay opacity
+    // optionsOverlayClose();
+}
+
+function renameItemInProg(){
+    const newName = renamedItemInProgress.value;
+    const itemToRename = document.getElementById(currentItemId);
+    const parentContainer = itemToRename.parentElement;
+    const grandparentContainer = parentContainer.parentElement;
+    for (const child of grandparentContainer.childNodes){
+        if (child.nodeType === Node.TEXT_NODE){
+            child.nodeValue = newName;
+            console.log(child.nodeValue);
+        };
+    };
+    // Reset textbox
+    resetTextBoxValue();
+
+    // Change overlay opacity
+    // optionsOverlayClose();
+}
+
+function renameItemComp(){
+    const newName = renamedItemCompleted.value;
     const itemToRename = document.getElementById(currentItemId);
     const parentContainer = itemToRename.parentElement;
     const grandparentContainer = parentContainer.parentElement;
@@ -259,19 +297,19 @@ addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
 
 // Event Listeners for 'To Do' section option buttons
-renameButton.addEventListener("click", renameItem);
+renameButton.addEventListener("click", renameItemToDo);
 deleteButton.addEventListener("click", deleteItem);
 moveToInProgressButton.addEventListener("click", moveListItemToInProgress);
 moveToCompletedButton.addEventListener("click", moveListItemToCompleted);
 
 // Event Listeners for 'In Progress' section option buttons
-renameButtonInProg.addEventListener("click", renameItem);
+renameButtonInProg.addEventListener("click", renameItemInProg);
 deleteButtonInProg.addEventListener("click", deleteItem);
 moveToToDoButtonInProg.addEventListener("click", moveListItemToToDo);
 moveToCompletedButtonInProg.addEventListener("click", moveListItemToCompleted);
 
 // Event Listeners for 'Completed' section option buttons
-renameButtonComp.addEventListener("click", renameItem);
+renameButtonComp.addEventListener("click", renameItemComp);
 deleteButtonComp.addEventListener("click", deleteItem);
 moveToToDoButtonComp.addEventListener("click", moveListItemToToDo);
 moveToInProgressButtonComp.addEventListener("click", moveListItemToInProgress);
