@@ -54,6 +54,9 @@ const deleteButtonComp = document.getElementById("deleteButtonComp");
 const moveToToDoButtonComp = document.getElementById("moveToDoButtonComp");
 const moveToInProgressButtonComp = document.getElementById("moveInProgButtonComp");
 
+// Collection because there are multiple
+const closeButtons = document.getElementsByClassName("closebutton");
+
 function changePage(element, section){
     element.addEventListener("click", function(){
         section.scrollIntoView({behavior: "smooth", inline: "center"});
@@ -295,6 +298,19 @@ function deleteItem(){
 
 addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
+
+// Event Listener for closing overlay with 'esc'
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape"){
+        for (const closeButton of closeButtons){
+            const parentDiv = closeButton.parentElement;
+            if (window.location.hash === `#${parentDiv.id}`){
+                closeButton.click();
+                break;
+            } 
+        };
+    };
+});
 
 // Event Listeners for 'To Do' section option buttons
 renameButton.addEventListener("click", renameItemToDo);
