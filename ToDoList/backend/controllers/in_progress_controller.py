@@ -55,7 +55,7 @@ def create_in_progress_item():
             body_data,
             session=db.session
         )
-        # Add new airline data to session
+        # Add new in progress data to session
         db.session.add(new_in_progress_item)
         # Commit the session
         db.session.commit()
@@ -97,12 +97,12 @@ def update_in_progress_item(in_progress_id):
 # DELETE /id
 @in_progress_bp.route("/<int:in_progress_id>", methods=["DELETE"])
 def delete_to_item(in_progress_id):
-    # Find the airline with the airline_id
+    # Find the in progress with the in progress_id
     stmt = db.select(InProgress).where(InProgress.id == in_progress_id)
     in_progress = db.session.scalar(stmt)
     # if exists
     if in_progress:
-        # delete the airline entry
+        # delete the in progress entry
         db.session.delete(in_progress)
         db.session.commit()
 
