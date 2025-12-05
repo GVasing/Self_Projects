@@ -7,43 +7,32 @@ from flask_cors import CORS
 from dotenv import load_dotenv # This allows 'main.py' to read the contents of the .env file
 
 # Created module imports
-from database.db import get_db_connection
+# from database.db import get_db_connection
+from init import db
+from controllers.cli_controller import db_commands
 
-# Initialise flask app
-app = Flask(__name__)
+# Load .env variables into application environment
+load_dotenv()
 
-# Enable CORS to allow frontend to communicate with backend
-CORS (app)
+def create_app():
 
-@app.route("/")
-def home():
-    return jsonify({
-        "message": "Flask app works"
-    })
+    # Initialise flask app
+    app = Flask(__name__)
 
-@app.route("/api-test")
-def endpoint_test():
-    return jsonify({
-        "message": "Endpoint test works"
-    })
+    # Configure database connection using environment variable
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
 
-@app.route("/db_connection")
-def db_connection_test():
-    conn = get_db_connection()
+    # Enable CORS to allow frontend to communicate with backend
+    CORS (app)
 
-    if conn:
-        # conn.close()
-        return jsonify({
-            "message": "database connected"
-        })
-    else:
-        return jsonify({
-            "message": "database connection failed"
-        }), 500
+    # Initialise SQLAlchemy Database
+    db.init_app(app)
 
-if __name__ == "__main__":
-    app.run(
-        host='0.0.0.0',  # Makes it accessible from your frontend
-        port=5500,
-        debug=True
-    )
+    # Disable automatic sorting of JSON responses
+    app.json.sort_keys = False
+
+    # Register blueprints
+    app.register_blueprint(db_commands)
+
+    # Return configured app instance
+    return app
