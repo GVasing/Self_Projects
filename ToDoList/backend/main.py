@@ -10,6 +10,9 @@ from dotenv import load_dotenv # This allows 'main.py' to read the contents of t
 # from database.db import get_db_connection
 from init import db
 from controllers.cli_controller import db_commands
+from controllers.to_do_controller import to_do_bp
+from controllers.in_progress_controller import in_progress_bp
+from controllers.completed_controller import completed_bp
 
 # Load .env variables into application environment
 load_dotenv()
@@ -33,6 +36,9 @@ def create_app():
 
     # Register blueprints
     app.register_blueprint(db_commands)
+    app.register_blueprint(to_do_bp)
+    app.register_blueprint(in_progress_bp)
+    app.register_blueprint(completed_bp)
 
     # Return configured app instance
     return app
