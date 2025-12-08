@@ -22,11 +22,11 @@ def create_app():
     # Initialise flask app
     app = Flask(__name__)
 
-    # Configure database connection using environment variable
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
-
     # Enable CORS to allow frontend to communicate with backend
     CORS (app)
+
+    # Configure database connection using environment variable
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
 
     # Initialise SQLAlchemy Database
     db.init_app(app)
