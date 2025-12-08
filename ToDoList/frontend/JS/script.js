@@ -1,5 +1,5 @@
 // Global counter
-let counter = 0 
+// let counter = 0 
 
 // Global variables
 let currentItemId = null;
@@ -82,7 +82,7 @@ function resetTextBoxValue(){
     renamedItemCompleted.value = "";
 }
 
-function createNewListItem(){
+async function createNewListItem(){
     // Get text value
     const itemValue = newItem.value;
 
@@ -91,52 +91,60 @@ function createNewListItem(){
         return;
     }
 
-    // Create elements and attributes required
-    const newItemLabel = document.createElement("label");
-    newItemLabel.className = "container";
-    const newItemInput = document.createElement("input");
-    newItemInput.type = "checkbox";
-    const newItemSpan = document.createElement("span");
-    newItemSpan.className = "checkmark";
-    const newItemMenuButton = document.createElement("button");
-    newItemMenuButton.className = "options";
-    newItemMenuButton.id = "item-" + counter;
-    const newItemButtonLink = document.createElement("a");
-    newItemButtonLink.href = "#OptionsToDo";
+    try {
+        // Save to database and retrieve ID
+        const savedToDoItem = await toDoAPI.create({ item_name: itemValue});
 
-    // Get parent container
-    const listContainer = document.getElementById("toDoListContainer");
-
-    // Add label to parent container
-    listContainer.appendChild(newItemLabel);
-
-    // Add elements to label
-    newItemLabel.appendChild(newItemInput);
-    newItemLabel.appendChild(newItemSpan);
-    newItemLabel.appendChild(newItemButtonLink);
-
-    // Get and add textbox value to label
-    const newItemValue = document.createTextNode(itemValue);
-    newItemLabel.appendChild(newItemValue);
-
-    // Add button to anchor element
-    newItemButtonLink.appendChild(newItemMenuButton);
-
-    // Create values for buttons and add to them
-    const buttonValue = document.createTextNode("⁝");
-    newItemMenuButton.appendChild(buttonValue);
-
-    // Increment counter
-    counter ++;
-
-    // Loop through each options button and add an event listener
-    for (const menuButton of optionsMenuButtons){
-        console.log(menuButton);
-        menuButton.addEventListener("click", retrieveElementId);
-    };
-
-    // Reset textbox
-    resetTextBoxValue();
+        // Create elements and attributes required
+        const newItemLabel = document.createElement("label");
+        newItemLabel.className = "container";
+        const newItemInput = document.createElement("input");
+        newItemInput.type = "checkbox";
+        const newItemSpan = document.createElement("span");
+        newItemSpan.className = "checkmark";
+        const newItemMenuButton = document.createElement("button");
+        newItemMenuButton.className = "options";
+        newItemMenuButton.id = "item-" + savedToDoItem.id;
+        const newItemButtonLink = document.createElement("a");
+        newItemButtonLink.href = "#OptionsToDo";
+    
+        // Get parent container
+        const listContainer = document.getElementById("toDoListContainer");
+    
+        // Add label to parent container
+        listContainer.appendChild(newItemLabel);
+    
+        // Add elements to label
+        newItemLabel.appendChild(newItemInput);
+        newItemLabel.appendChild(newItemSpan);
+        newItemLabel.appendChild(newItemButtonLink);
+    
+        // Get and add textbox value to label
+        const newItemValue = document.createTextNode(itemValue);
+        newItemLabel.appendChild(newItemValue);
+    
+        // Add button to anchor element
+        newItemButtonLink.appendChild(newItemMenuButton);
+    
+        // Create values for buttons and add to them
+        const buttonValue = document.createTextNode("⁝");
+        newItemMenuButton.appendChild(buttonValue);
+    
+        // Increment counter
+        counter ++;
+    
+        // Loop through each options button and add an event listener
+        for (const menuButton of optionsMenuButtons){
+            console.log(menuButton);
+            menuButton.addEventListener("click", retrieveElementId);
+        };
+    
+        // Reset textbox
+        resetTextBoxValue();
+    } catch (error){
+        console.error("Failed to create item: ", error);
+        alert("Failed to add item.  Please try again.");
+    }
 }
 
 function moveListItemToInProgress(){
@@ -205,12 +213,12 @@ function moveListItemToToDo(){
     };
 }
 
-function addListItems(event){
+async function addListItems(event){
     if (event.type === "click"){
-        createNewListItem();
+        await createNewListItem();
     } else if (event.type === "keypress"){
         if (event.key === "Enter"){
-            createNewListItem();
+            await createNewListItem();
         }
     }
 }
