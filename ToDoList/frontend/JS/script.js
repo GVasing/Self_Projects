@@ -1,6 +1,3 @@
-// Global counter
-// let counter = 0 
-
 // Global variables
 let currentItemId = null;
 
@@ -129,9 +126,6 @@ async function createNewListItem(){
         // Create values for buttons and add to them
         const buttonValue = document.createTextNode("⁝");
         newItemMenuButton.appendChild(buttonValue);
-    
-        // Increment counter
-        counter ++;
     
         // Loop through each options button and add an event listener
         for (const menuButton of optionsMenuButtons){
