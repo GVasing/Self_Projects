@@ -86,6 +86,11 @@ function createNewListItem(){
     // Get text value
     const itemValue = newItem.value;
 
+    // Validate text value
+    if (!itemValue.trim()){
+        return;
+    }
+
     // Create elements and attributes required
     const newItemLabel = document.createElement("label");
     newItemLabel.className = "container";
