@@ -223,8 +223,6 @@ async function retrieveElementId(event) {
     const buttonId = clickedElement.getAttribute('id');
     currentItemId = buttonId;
     console.log(currentItemId);
-    // const newNameDatabase = await toDoAPI.getById(currentItemId);
-    // console.log(newNameDatabase);
 }
 
 async function renameItemToDo(){
@@ -232,19 +230,10 @@ async function renameItemToDo(){
     const newName = renamedItemToDo.value;
 
     try {
-        // Update item
+        // UPDATE item in database
         const updatedItem = await toDoAPI.update(currentItemId, {item_name: newName});
-
-        // const updatedItem = await toDoAPI.update({
-        //     id: currentItemId,
-        //     item_name: newName
-        // });
-
-        console.log(updatedItem.id);
-
-        // Save to database
-        // const savedToDoItemRenamed = await toDoAPI.update({ item_name: newName});
     
+        // Update item in rendered list
         const itemToRename = document.getElementById(currentItemId);
         const parentContainer = itemToRename.parentElement;
         const grandparentContainer = parentContainer.parentElement;
@@ -331,16 +320,27 @@ function renameCompletedListItems(event){
     }
 }
 
-function deleteItem(){
-    // Access item by global variable 
-    const itemToDelete = document.getElementById(currentItemId);
+async function deleteItem(){
 
-    // Track back to grandparent container
-    const parentContainer = itemToDelete.parentElement;
-    const grandparentContainer = parentContainer.parentElement;
+    try{
+        // DELETE from database
+        const deletedItem = await toDoAPI.delete(currentItemId);
+        console.log(deletedItem);
 
-    // Remove container
-    grandparentContainer.remove();
+        // Delete from rendered list
+        // Access item by global variable 
+        const itemToDelete = document.getElementById(currentItemId);
+    
+        // Track back to grandparent container
+        const parentContainer = itemToDelete.parentElement;
+        const grandparentContainer = parentContainer.parentElement;
+        
+        // Remove container
+        grandparentContainer.remove();
+    
+    } catch (error){
+        console.error("Unable to delete entirely, or only from database.");
+    }
 }
 
 addButton.addEventListener("click", addListItems);
