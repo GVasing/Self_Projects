@@ -250,7 +250,7 @@ async function renameItemToDo(){
         closeToDo.click();
 
     } catch (error){
-        console.error("Item not renamed.")
+        console.error("Item could not be renamed.")
     }
 }
 
@@ -264,22 +264,33 @@ function renameToDoListItems(event){
     }
 }
 
-function renameItemInProg(){
+async function renameItemInProg(){
+    // Store new name in variable
     const newName = renamedItemInProgress.value;
-    const itemToRename = document.getElementById(currentItemId);
-    const parentContainer = itemToRename.parentElement;
-    const grandparentContainer = parentContainer.parentElement;
-    for (const child of grandparentContainer.childNodes){
-        if (child.nodeType === Node.TEXT_NODE){
-            child.nodeValue = newName;
-            console.log(child.nodeValue);
-        };
-    };
-    // Reset textbox
-    resetTextBoxValue();
 
-    // Close modal window
-    closeInProg.click();
+    try{
+        // UPDATE item in database
+        const updatedItem = await inProgressAPI.update(currentItemId, {item_name: newName});
+
+        // Update item in rendered list
+        const newName = renamedItemInProgress.value;
+        const itemToRename = document.getElementById(currentItemId);
+        const parentContainer = itemToRename.parentElement;
+        const grandparentContainer = parentContainer.parentElement;
+        for (const child of grandparentContainer.childNodes){
+            if (child.nodeType === Node.TEXT_NODE){
+                child.nodeValue = newName;
+                console.log(child.nodeValue);
+            };
+        };
+        // Reset textbox
+        resetTextBoxValue();
+    
+        // Close modal window
+        closeInProg.click();
+    } catch(error){
+        console.error("Item could not be renamed.")
+    }
 }
 
 function renameInProgressListItems(event){
@@ -292,22 +303,33 @@ function renameInProgressListItems(event){
     }
 }
 
-function renameItemComp(){
+async function renameItemComp(){
+    // Store new name in variable
     const newName = renamedItemCompleted.value;
-    const itemToRename = document.getElementById(currentItemId);
-    const parentContainer = itemToRename.parentElement;
-    const grandparentContainer = parentContainer.parentElement;
-    for (const child of grandparentContainer.childNodes){
-        if (child.nodeType === Node.TEXT_NODE){
-            child.nodeValue = newName;
-            console.log(child.nodeValue);
-        };
-    };
-    // Reset textbox
-    resetTextBoxValue();
 
-    // Close modal window
-    closeComp.click();
+    try {
+        // UPDATE item in database
+        const updatedItem = await completedAPI.update(currentItemId, {item_name: newName});
+    
+        // Update item in rendered list
+        const itemToRename = document.getElementById(currentItemId);
+        const parentContainer = itemToRename.parentElement;
+        const grandparentContainer = parentContainer.parentElement;
+        for (const child of grandparentContainer.childNodes){
+            if (child.nodeType === Node.TEXT_NODE){
+                child.nodeValue = newName;
+                console.log(child.nodeValue);
+            };
+        };
+        // Reset textbox
+        resetTextBoxValue();
+        
+        // Close modal window
+        closeToDo.click();
+
+    } catch (error){
+        console.error("Item could not be renamed.")
+    }
 }
 
 function renameCompletedListItems(event){
