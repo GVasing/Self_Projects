@@ -101,7 +101,7 @@ async function createNewListItem(){
         newItemSpan.className = "checkmark";
         const newItemMenuButton = document.createElement("button");
         newItemMenuButton.className = "options";
-        newItemMenuButton.id = "item-" + savedToDoItem.id;
+        newItemMenuButton.id = savedToDoItem.id;
         const newItemButtonLink = document.createElement("a");
         newItemButtonLink.href = "#OptionsToDo";
     
@@ -135,6 +135,7 @@ async function createNewListItem(){
     
         // Reset textbox
         resetTextBoxValue();
+
     } catch (error){
         console.error("Failed to create item: ", error);
         alert("Failed to add item.  Please try again.");
@@ -217,29 +218,51 @@ async function addListItems(event){
     }
 }
 
-function retrieveElementId(event) {
+async function retrieveElementId(event) {
     const clickedElement = event.target;
     const buttonId = clickedElement.getAttribute('id');
     currentItemId = buttonId;
     console.log(currentItemId);
+    // const newNameDatabase = await toDoAPI.getById(currentItemId);
+    // console.log(newNameDatabase);
 }
 
-function renameItemToDo(){
+async function renameItemToDo(){
+    // Store new name in variable
     const newName = renamedItemToDo.value;
-    const itemToRename = document.getElementById(currentItemId);
-    const parentContainer = itemToRename.parentElement;
-    const grandparentContainer = parentContainer.parentElement;
-    for (const child of grandparentContainer.childNodes){
-        if (child.nodeType === Node.TEXT_NODE){
-            child.nodeValue = newName;
-            console.log(child.nodeValue);
-        };
-    };
-    // Reset textbox
-    resetTextBoxValue();
+
+    try {
+        // Update item
+        const updatedItem = await toDoAPI.update(currentItemId, {item_name: newName});
+
+        // const updatedItem = await toDoAPI.update({
+        //     id: currentItemId,
+        //     item_name: newName
+        // });
+
+        console.log(updatedItem.id);
+
+        // Save to database
+        // const savedToDoItemRenamed = await toDoAPI.update({ item_name: newName});
     
-    // Close modal window
-    closeToDo.click();
+        const itemToRename = document.getElementById(currentItemId);
+        const parentContainer = itemToRename.parentElement;
+        const grandparentContainer = parentContainer.parentElement;
+        for (const child of grandparentContainer.childNodes){
+            if (child.nodeType === Node.TEXT_NODE){
+                child.nodeValue = newName;
+                console.log(child.nodeValue);
+            };
+        };
+        // Reset textbox
+        resetTextBoxValue();
+        
+        // Close modal window
+        closeToDo.click();
+
+    } catch (error){
+        console.error("Item not renamed.")
+    }
 }
 
 function renameToDoListItems(event){

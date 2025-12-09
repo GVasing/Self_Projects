@@ -34,7 +34,7 @@ const toDoAPI = {
 
     // GET ToDo Item by ID
     getById: async (id) => {
-        return await apiRequest(`/to_dos/${id}/`)
+        return await apiRequest(`/to_dos/${id}`)
     },
 
     // POST ToDo Item
@@ -47,7 +47,7 @@ const toDoAPI = {
 
     // PUT/PATCH ToDo Item
     update: async (id, toDoData) => {
-        return await apiRequest(`/to_dos/${id}/`, {
+        return await apiRequest(`/to_dos/${id}`, {
             method: "PATCH",
             body: JSON.stringify(toDoData),
         });
@@ -55,7 +55,7 @@ const toDoAPI = {
 
     // DELETE ToDoItem
     delete: async (id) => {
-        return await apiRequest(`/to_dos/${id}/`, {
+        return await apiRequest(`/to_dos/${id}`, {
             method: "DELETE",
         });
     }
