@@ -437,20 +437,26 @@ function renameCompletedListItems(event){
 }
 
 async function deleteItem(){
-
     try{
-        // DELETE from database
-        const deletedItem = await toDoAPI.delete(currentItemId);
-        console.log(deletedItem);
-
-        // Delete from rendered list
         // Access item by global variable 
         const itemToDelete = document.getElementById(currentItemId);
-    
-        // Track back to grandparent container
         const parentContainer = itemToDelete.parentElement;
         const grandparentContainer = parentContainer.parentElement;
+        const greatGrandparentContainer = grandparentContainer.parentElement;
         
+        if (greatGrandparentContainer.id === "toDoListContainer"){
+            // DELETE from database
+            const deletedItem = await toDoAPI.delete(currentItemId);
+            console.log(deletedItem);
+        } else if (greatGrandparentContainer.id === "inProgressListContainer"){
+            const deletedItem = await inProgressAPI.delete(currentItemId);
+            console.log(deletedItem);
+        } else {
+            const deletedItem = await completedAPI.delete(currentItemId);
+            console.log(deletedItem);
+        }
+
+        // Delete from rendered list
         // Remove container
         grandparentContainer.remove();
     
@@ -458,9 +464,6 @@ async function deleteItem(){
         console.error("Unable to delete entirely, or only from database.");
     }
 }
-
-addButton.addEventListener("click", addListItems);
-newItem.addEventListener("keypress", addListItems);
 
 // Event Listener for closing overlay with 'esc'
 document.addEventListener("keydown", (event) => {
@@ -474,6 +477,9 @@ document.addEventListener("keydown", (event) => {
         };
     };
 });
+
+addButton.addEventListener("click", addListItems);
+newItem.addEventListener("keypress", addListItems);
 
 // Event Listeners for 'To Do' section option buttons
 renameButton.addEventListener("click", renameToDoListItems);
