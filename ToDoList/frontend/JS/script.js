@@ -129,7 +129,7 @@ async function createNewListItem(){
     
         // Loop through each options button and add an event listener
         for (const menuButton of optionsMenuButtons){
-            console.log(menuButton);
+            // console.log(menuButton);
             menuButton.addEventListener("click", retrieveElementId);
         };
     
@@ -142,12 +142,38 @@ async function createNewListItem(){
     }
 }
 
-function moveListItemToInProgress(){
-    // Get item value
+async function moveListItemToInProgress(){
+    // Create empty local variable to store name
+    let movedItemName = null;
+
+    // Move item in backend
+    // Retreive item name
     const itemToMove = document.getElementById(currentItemId);
     const parentContainer = itemToMove.parentElement;  
     const grandparentContainer = parentContainer.parentElement;
+    for (const child of grandparentContainer.childNodes){
+        if (child.nodeType === Node.TEXT_NODE){
+            const itemName = child.nodeValue;
+            movedItemName = itemName;
+            console.log(itemName);
+        };
+    };
 
+    // Create item in 'in_progress' database table
+    const newInProgressItem = await inProgressAPI.create({ item_name: movedItemName});
+    console.log(newInProgressItem);
+    
+    // Determine which section item came from to delete
+    const greatGrandparentContainer = grandparentContainer.parentElement;
+    if (greatGrandparentContainer.id === "toDoListContainer"){
+        const deletedToDoItem = await toDoAPI.delete(currentItemId);
+        console.log(deletedToDoItem);
+    } else {
+        const deletedCompletedItem = await completedAPI.delete(currentItemId);
+        console.log(deletedCompletedItem);
+    };
+
+    // Move item in frontend
     // Change link/href for tricolon
     parentContainer.href = "#OptionsInProgress";
 
@@ -159,17 +185,44 @@ function moveListItemToInProgress(){
 
     // Loop through each options button and add an event listener
     for (const menuButton of optionsMenuButtons){
-        console.log(menuButton);
+        menuButton.id = newInProgressItem.id;
+        console.log(menuButton.id);
         menuButton.addEventListener("click", retrieveElementId);
     };
 }
 
-function moveListItemToCompleted(){
-    // Get item value
-    const itemToMove = document.getElementById(currentItemId);
-    const parentContainer = itemToMove.parentElement;
-    const grandparentContainer = parentContainer.parentElement;
+async function moveListItemToCompleted(){
+    // Create empty local variable to store name
+    let movedItemName = null;
 
+    // Move item in backend
+    // Retreive item name
+    const itemToMove = document.getElementById(currentItemId);
+    const parentContainer = itemToMove.parentElement;  
+    const grandparentContainer = parentContainer.parentElement;
+    for (const child of grandparentContainer.childNodes){
+        if (child.nodeType === Node.TEXT_NODE){
+            const itemName = child.nodeValue;
+            movedItemName = itemName;
+            console.log(itemName);
+        };
+    };
+
+    // Create item in 'completed' database table
+    const newCompletedItem = await completedAPI.create({ item_name: movedItemName});
+    console.log(newCompletedItem.id);
+
+    // Determine which section item came from to delete
+    const greatGrandparentContainer = grandparentContainer.parentElement;
+    if (greatGrandparentContainer.id === "toDoListContainer"){
+        const deletedToDoItem = await toDoAPI.delete(currentItemId);
+        console.log(deletedToDoItem);
+    } else {
+        const deletedCompletedItem = await inProgressAPI.delete(currentItemId);
+        console.log(deletedCompletedItem);
+    };
+
+    // Move item in frontend
     // Change link/href for tricolon
     parentContainer.href = "#OptionsComplete";
 
@@ -181,16 +234,42 @@ function moveListItemToCompleted(){
 
     // Loop through each options button and add an event listener
     for (const menuButton of optionsMenuButtons){
-        console.log(menuButton);
+        menuButton.id = newCompletedItem.id;
+        console.log(menuButton.id);
         menuButton.addEventListener("click", retrieveElementId);
     };
 }
 
-function moveListItemToToDo(){
-    // Get item value
+async function moveListItemToToDo(){
+    // Create empty local variable to store name
+    let movedItemName = null;
+
+    // Move item in backend
+    // Retreive item name
     const itemToMove = document.getElementById(currentItemId);
-    const parentContainer = itemToMove.parentElement;
+    const parentContainer = itemToMove.parentElement;  
     const grandparentContainer = parentContainer.parentElement;
+    for (const child of grandparentContainer.childNodes){
+        if (child.nodeType === Node.TEXT_NODE){
+            const itemName = child.nodeValue;
+            movedItemName = itemName;
+            console.log(itemName);
+        };
+    };
+
+    // Create item in 'to_do' database table
+    const newToDoItem = await toDoAPI.create({ item_name: movedItemName});
+    console.log(newToDoItem);
+    
+    // Determine which section item came from to delete
+    const greatGrandparentContainer = grandparentContainer.parentElement;
+    if (greatGrandparentContainer.id === "inProgressListContainer"){
+        const deletedInProgressItem = await inProgressAPI.delete(currentItemId);
+        console.log(deletedInProgressItem);
+    } else {
+        const deletedCompletedItem = await completedAPI.delete(currentItemId);
+        console.log(deletedCompletedItem);
+    };
 
     // Change link/href for tricolon
     parentContainer.href = "#OptionsToDo";
@@ -203,7 +282,8 @@ function moveListItemToToDo(){
 
     // Loop through each options button and add an event listener
     for (const menuButton of optionsMenuButtons){
-        console.log(menuButton);
+        menuButton.id = newToDoItem.id;
+        console.log(menuButton.id);
         menuButton.addEventListener("click", retrieveElementId);
     };
 }
