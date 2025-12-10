@@ -465,6 +465,142 @@ async function deleteItem(){
     }
 }
 
+async function loadItems() {
+    try{
+        const toDoItems = await toDoAPI.getAll();
+        const inProgressItems = await inProgressAPI.getAll();
+        const completedItems = await completedAPI.getAll();
+
+        for (const toDoItem of toDoItems){
+            // Create elements and attributes required
+            const newItemLabel = document.createElement("label");
+            newItemLabel.className = "container";
+            const newItemInput = document.createElement("input");
+            newItemInput.type = "checkbox";
+            const newItemSpan = document.createElement("span");
+            newItemSpan.className = "checkmark";
+            const newItemMenuButton = document.createElement("button");
+            newItemMenuButton.className = "options";
+            newItemMenuButton.id = toDoItem.id;
+            const newItemButtonLink = document.createElement("a");
+            newItemButtonLink.href = "#OptionsToDo";
+        
+            // Get parent container
+            const listContainer = document.getElementById("toDoListContainer");
+        
+            // Add label to parent container
+            listContainer.appendChild(newItemLabel);
+        
+            // Add elements to label
+            newItemLabel.appendChild(newItemInput);
+            newItemLabel.appendChild(newItemSpan);
+            newItemLabel.appendChild(newItemButtonLink);
+        
+            // Get and add textbox value to label
+            const newItemValue = document.createTextNode(toDoItem.item_name);
+            newItemLabel.appendChild(newItemValue);
+        
+            // Add button to anchor element
+            newItemButtonLink.appendChild(newItemMenuButton);
+        
+            // Create values for buttons and add to them
+            const buttonValue = document.createTextNode("⁝");
+            newItemMenuButton.appendChild(buttonValue);
+        
+            // Loop through each options button and add an event listener
+            for (const menuButton of optionsMenuButtons){
+                menuButton.addEventListener("click", retrieveElementId);
+            };
+        };
+        for (const inProgressItem of inProgressItems){
+            // Create elements and attributes required
+            const newItemLabel = document.createElement("label");
+            newItemLabel.className = "container";
+            const newItemInput = document.createElement("input");
+            newItemInput.type = "checkbox";
+            const newItemSpan = document.createElement("span");
+            newItemSpan.className = "checkmark";
+            const newItemMenuButton = document.createElement("button");
+            newItemMenuButton.className = "options";
+            newItemMenuButton.id = inProgressItem.id;
+            const newItemButtonLink = document.createElement("a");
+            newItemButtonLink.href = "#OptionsInProgress";
+        
+            // Get parent container
+            const listContainer = document.getElementById("inProgressListContainer");
+        
+            // Add label to parent container
+            listContainer.appendChild(newItemLabel);
+        
+            // Add elements to label
+            newItemLabel.appendChild(newItemInput);
+            newItemLabel.appendChild(newItemSpan);
+            newItemLabel.appendChild(newItemButtonLink);
+        
+            // Get and add textbox value to label
+            const newItemValue = document.createTextNode(inProgressItem.item_name);
+            newItemLabel.appendChild(newItemValue);
+        
+            // Add button to anchor element
+            newItemButtonLink.appendChild(newItemMenuButton);
+        
+            // Create values for buttons and add to them
+            const buttonValue = document.createTextNode("⁝");
+            newItemMenuButton.appendChild(buttonValue);
+        
+            // Loop through each options button and add an event listener
+            for (const menuButton of optionsMenuButtons){
+                menuButton.addEventListener("click", retrieveElementId);
+            };
+        };
+        for (const completedItem of completedItems){
+            // Create elements and attributes required
+            const newItemLabel = document.createElement("label");
+            newItemLabel.className = "container";
+            const newItemInput = document.createElement("input");
+            newItemInput.type = "checkbox";
+            const newItemSpan = document.createElement("span");
+            newItemSpan.className = "checkmark";
+            const newItemMenuButton = document.createElement("button");
+            newItemMenuButton.className = "options";
+            newItemMenuButton.id = completedItem.id;
+            const newItemButtonLink = document.createElement("a");
+            newItemButtonLink.href = "#OptionsCompleted";
+        
+            // Get parent container
+            const listContainer = document.getElementById("completedListContainer");
+        
+            // Add label to parent container
+            listContainer.appendChild(newItemLabel);
+        
+            // Add elements to label
+            newItemLabel.appendChild(newItemInput);
+            newItemLabel.appendChild(newItemSpan);
+            newItemLabel.appendChild(newItemButtonLink);
+        
+            // Get and add textbox value to label
+            const newItemValue = document.createTextNode(completedItem.item_name);
+            newItemLabel.appendChild(newItemValue);
+        
+            // Add button to anchor element
+            newItemButtonLink.appendChild(newItemMenuButton);
+        
+            // Create values for buttons and add to them
+            const buttonValue = document.createTextNode("⁝");
+            newItemMenuButton.appendChild(buttonValue);
+        
+            // Loop through each options button and add an event listener
+            for (const menuButton of optionsMenuButtons){
+                // console.log(menuButton);
+                menuButton.addEventListener("click", retrieveElementId);
+            };
+        };
+
+    } catch (error){
+        console.error("Could not load items.");
+    } 
+}
+
 // Event Listener for closing overlay with 'esc'
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape"){
@@ -481,7 +617,10 @@ document.addEventListener("keydown", (event) => {
 addButton.addEventListener("click", addListItems);
 newItem.addEventListener("keypress", addListItems);
 
-// Event Listeners for 'To Do' section option buttons
+// Event listener for exisiting items to load with page
+window.addEventListener("load", loadItems);
+
+// Event listeners for 'To Do' section option buttons
 renameButton.addEventListener("click", renameToDoListItems);
 deleteButton.addEventListener("click", deleteItem);
 moveToInProgressButton.addEventListener("click", moveListItemToInProgress);

@@ -65,7 +65,7 @@ const toDoAPI = {
 const inProgressAPI = {
     // GET All In Progress Items
     getAll: async () => {
-        return await apiRequest("/in_progresses");
+        return await apiRequest("/in_progresses/");
     },
 
     // GET In Progress Item by ID
@@ -101,7 +101,7 @@ const inProgressAPI = {
 const completedAPI = {
     // GET All Completed Items
     getAll: async () => {
-        return await apiRequest("/completeds");
+        return await apiRequest("/completeds/");
     },
 
     // GET Completed Item by ID
