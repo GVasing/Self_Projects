@@ -1,5 +1,5 @@
 // Base URL for API
-const API_BASE_URL = "http://localhost:5500"
+const API_BASE_URL = "https://self-projects.onrender.com"
 
 // Function to handle API requests
 async function apiRequest(endpoint, options = {}) {
